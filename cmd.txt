@@ -1,0 +1,18 @@
+youtubelink:https://www.youtube.com/watch?v=3qBXWUpoPHo
+npm init
+npm i typescript
+(npm install -g typescript):tsc --init
+
+
+for typscript run:
+tsc
+node filename
+
+create app in angular: 
+ng new appname
+
+running app:
+cd filepath
+
+creating component:
+ng g c component_name
