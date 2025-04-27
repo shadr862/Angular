@@ -16,3 +16,6 @@ cd filepath
 
 creating component:
 ng g c component_name
+
+bootstrap install:
+ng add ngx-bootstrap

@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+.even {
+    background-color: tomato !important;
+    color: white !important;
+}
+
+.odd {
+    background-color: lightblue !important;
+    color: white !important;
+}
+
+.even td, .odd td {
+    background-color: inherit;
+    color: inherit;
+}
+
+  
