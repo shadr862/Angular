@@ -1,21 +1,29 @@
-import { AfterContentInit, Component, ContentChild, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, ContentChild, OnInit } from '@angular/core';
 import { After } from 'v8';
 import { EmployeeComponent } from '../employee/employee.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'hinv-container',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './container.component.html',
   styleUrl: './container.component.scss'
 })
-export class ContainerComponent implements OnInit,AfterContentInit{
+export class ContainerComponent implements OnInit,AfterContentInit,AfterContentChecked{
   
+  //If we want use content child,we can use only these componet which i define it inside the ng conten in app.html
+  //we can not do this:{static:true}.the dafult is false and fixed.so ngonit is not availabe for this
   @ContentChild(EmployeeComponent) employee!: EmployeeComponent;
   ngOnInit(): void {
 
   }
   ngAfterContentInit(): void {
-    this.employee.EmployeeName = 'John';
+    this.employee.EmployeeName = 'Change the Employe name using ContentChild';
   }
+
+  ngAfterContentChecked(): void {
+    //it will be used when we want to detect multiple change of the content
+  }
+  
 
 }

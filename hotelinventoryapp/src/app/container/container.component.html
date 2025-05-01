@@ -1,3 +1,19 @@
+
+<!-- we define the serial-->
 <ng-content select="hinv-employee"></ng-content>
-<ng-content></ng-content>
+
+<div [ngClass]="'ng-contentcss'">
+    <ng-content>
+        <div>
+            <h2>this is the body of ng content</h2>
+            <p>we serialize:</p>
+            <ol>
+                <li>employee</li>
+                <li>ng content</li>
+                <li>rooms</li>
+            </ol>
+        </div>
+    </ng-content>
+</div>
+
 <ng-content select="hinv-rooms"></ng-content>

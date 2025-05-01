@@ -1,18 +1,37 @@
-<h1>Hello wolrd</h1>
-<!-- <hinv-rooms></hinv-rooms> -->
+
+<!-- <hinv-rooms>
+    <h1>This is from Container</h1>//it will not work as we do not define ng content in rooms.html
+</hinv-rooms> -->
 <hinv-container>
+    <!-- we include component selector which we want to serialize-->
     <hinv-rooms></hinv-rooms>
     <hinv-employee></hinv-employee>
-    <h1>This is from Container</h1>
+    <!-- we can also con sider it as ng content body-->
 </hinv-container>
-<!-- <div [ngSwitch]="role">
-    <div *ngSwitchCase="'admin'">Admin</div>
-    <div *ngSwitchCase="'user'">User</div>  
-    <div *ngSwitchCase="'guest'">Guest</div>
-    <div *ngSwitchDefault>Unknown</div>
-</div> -->
-<div #name></div>
 
-<!-- <div>
-    <ng-template #user></ng-template>
-</div> -->
+
+
+
+<div [ngClass]="'appcss'">
+    <h4>Html Body of App component which is outside from ng content</h4>
+    <div>ngSwitch implementation :</div>
+    <!-- Two way binding Example-->
+    <input type="text" [(ngModel)]="role" (ngModelChange)="InputRole($event)"/>
+    
+    <div [ngSwitch]="role">
+        <div *ngSwitchCase="'admin'">Admin !Welcome in Case Statement</div>
+        <div *ngSwitchCase="'user'">User !Welcome in Case Statement</div>
+        <div *ngSwitchCase="'guest'">Guest !Welcome in Case Statement</div>
+        <div *ngSwitchDefault>Default !Welcome in Case Statement</div>
+    </div>
+
+    <div #name>
+    </div>
+
+    <!-- 
+    for see the channge uncomment and re run
+    <div>
+        <ng-template #user></ng-template>
+    </div> -->
+
+</div>

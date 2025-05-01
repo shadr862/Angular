@@ -1,33 +1,41 @@
 <!-- <h1>Welcome to {{hotelName}}</h1> -->
- <hinv-header></hinv-header>
- <hinv-header></hinv-header>
- 
+<!--Use of viewchild ,viewchildren ,AfterViewInit,ngAfterViewChecked in room for header-->
 
-<div [hidden]="hiderooms">
-    number of rooms: 
-    <div [ngStyle]="{'color':rooms.availablerooms>0 ? 'green' : 'red'}"
-    [innerText]="numberOfRooms">
-    </div>
+<div [ngClass]="'roomcss'">
+   <hinv-header></hinv-header>
+   <hinv-header></hinv-header>
+   <h2>Html body of rooms componet:</h2>
+   <div [hidden]="hiderooms">
+      number of rooms:
+      <div [ngStyle]="{'color':rooms.availablerooms>0 ? 'green' : 'red'}" [innerText]="numberOfRooms">
+      </div>
+   </div>
+
+   <div>
+      {{ rooms.availablerooms > 0 ? rooms.availablerooms : "no rooms available" }}
+   </div>
+
+   <!-- use of slice {{ roomList | json}} -->
+
+   <div *ngIf="selectedRoom">
+      {{selectedRoom | json}}
+   </div>
+
+   <div>
+      <button (click)="AddRoom()">Add Room</button>
+   </div>
+
+   <button (click)="toggle()">toggle</button>
+
+</div>
+
+<div *ngIf="hiderooms">
+   <!-- propertiest parent(room) to child(room-list) by
+      properties binding and event binding.This is Component Communication-->
+   <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel"
+      (SelectedRoom_rm_list)="selectRoom($event)"></hinv-rooms-list>
 </div>
 
 
-<div>
-    {{ rooms.availablerooms > 0 ? rooms.availablerooms : "no rooms available" }}
-</div>
-<!-- {{ roomList | json}} -->
- <div *ngIf="selectedRoom">
-    {{selectedRoom | json}}
- </div> 
-<div>
-     <button (click)="AddRoom()">Add Room</button>
-</div>
-
-<div *ngIf=" rooms.availablerooms>0">
-      <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel"
-      (SelectedRoom)="selectRoom($event)"></hinv-rooms-list>
-</div>
 
 
-
-
-<button (click)="toggle()">toggle</button>

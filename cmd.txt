@@ -14,8 +14,14 @@ ng new appname
 running app:
 cd filepath
 
+bootstrap install:
+nmp install bootstrap
+ng bootstrap->ng add @ng-bootstrap/ng-bootstrap
+
 creating component:
 ng g c component_name
 
-bootstrap install:
-ng add ngx-bootstrap
+creating service:
+ng g s rooms
+
+

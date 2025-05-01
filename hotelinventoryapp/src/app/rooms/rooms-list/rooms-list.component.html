@@ -1,34 +1,43 @@
-<h2>{{Title}}</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Index</th>
-      <th>Even/Odd</th>
-      <th>Room Number</th>
-      <th>Room Type</th>
-      <th>Room Amenities</th>
-      <th>Room Price</th>
-      <th>Checkin Time</th> 
-      <th>Rating</th>    
-      <th>Select Room</th>    
-    </tr>
-  </thead>
+<div [ngClass]="'room-listcss'">
+  <h2>Html body of rooms-list</h2>
+  <h4>{{Title}}</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Even/Odd</th>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Room Amenities</th>
+        <th>Room Price</th>
+        <th>Checkin Time</th>
+        <th>Rating</th>
+        <th>Select Room</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList; let e = even; let i = index">
-      <td>{{ i | number }}</td>
-      <td>{{ e ? "Even" : "Odd" }}</td>
-      <td>{{ room.roomnumber }}</td>
-      <td>{{ room.roomtype }}</td>
-      <td>{{ room.amenities | titlecase }}</td>
-      <td>{{ room.price | currency : 'Tk' }}</td>
-      <td>{{ room.checkinTime | date : 'short' }}</td>
-      <td>{{ room.rating | number : '1.1-2' }}</td>
-      <td>
-        <button class="btn btn-primary" (click)="selectRoom(room)">
-          Select
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+      <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList; let e = even; let i = index">
+        <td>{{ i | number }}</td>
+        <td>{{ e ? "Even" : "Odd" }}</td>
+        <td>{{ room.roomnumber }}</td>
+        <td>{{ room.roomtype }}</td>
+        <td>{{ room.amenities | titlecase }}</td>
+        <td>{{ room.price | currency : 'Tk' }}</td>
+        <td>{{ room.checkinTime | date : 'short' }}</td>
+        <td>{{ room.rating | number : '1.1-2' }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="selectRoom(room)">
+            Select
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>Two way binding implementation using getter and setter</div>
+  <!--If you write Riaz it will give you alert msg-->
+  <P>Hello!Write somethimg:</P>
+  <input type="text" [(ngModel)]="name"/>
+
+</div>
