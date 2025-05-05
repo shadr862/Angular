@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Angular\\hoteInventoryApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|f:\\angular\\hoteinventoryapi\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|solutionrelative:controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|f:\\angular\\hoteinventoryapi\\model\\roomdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|solutionrelative:model\\roomdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|f:\\angular\\hoteinventoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "roomDetails.cs",
+              "DocumentMoniker": "F:\\Angular\\hoteInventoryApi\\Model\\roomDetails.cs",
+              "RelativeDocumentMoniker": "Model\\roomDetails.cs",
+              "ToolTip": "F:\\Angular\\hoteInventoryApi\\Model\\roomDetails.cs",
+              "RelativeToolTip": "Model\\roomDetails.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T04:03:08.977Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Angular\\hoteInventoryApi\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "F:\\Angular\\hoteInventoryApi\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T17:16:09.987Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RoomsController.cs",
+              "DocumentMoniker": "F:\\Angular\\hoteInventoryApi\\Controllers\\RoomsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RoomsController.cs",
+              "ToolTip": "F:\\Angular\\hoteInventoryApi\\Controllers\\RoomsController.cs*",
+              "RelativeToolTip": "Controllers\\RoomsController.cs*",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAIwHsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T16:44:46.05Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

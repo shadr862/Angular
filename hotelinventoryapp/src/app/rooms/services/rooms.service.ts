@@ -1,59 +1,42 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { RoomDetails } from '../rooms';
+import { HttpClient, HttpRequest } from '@angular/common/http';
+import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';  // Adjust path
+import { AppConfig } from '../../AppConfig/appconfig.interface'; // Adjust path
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'  // Ensures global availability
 })
 export class RoomsService {
-  roomList:RoomDetails[]=[
-    {
-      roomnumber: 101,
-      roomtype: 'Deluxe Room',
-      amenities: 'AC, TV, WiFi',
-      price: 5000,
-      photo: 'assets/images/deluxeroom.jpg',
-      checkinTime: new Date('12-oct-2023 14:00:00'),
-      checkoutTime: new Date('13-oct-2023 12:00:00'),
-      rating: 4.5
-    },
-    {
-      roomnumber: 102,
-      roomtype: 'Super Deluxe Room',
-      amenities: 'AC, TV, WiFi, Mini Bar',
-      price: 7000,
-      photo: 'assets/images/superdeluxeroom.jpg',
-      checkinTime: new Date('11-nov-2023 14:00:00'),
-      checkoutTime: new Date('12-nov-2023 12:00:00'),
-      rating: 4.8
-    }
-    ,
-    {
-      roomnumber: 103,
-      roomtype: 'Suite Room',
-      amenities: 'AC, TV, WiFi, Mini Bar, Living Room',
-      price: 10000,
-      photo: 'assets/images/suiteroom.jpg',
-      checkinTime: new Date('10-dec-2023 14:00:00'),
-      checkoutTime: new Date('11-dec-2023 12:00:00'),
-      rating: 4.92334
-    },
-    {
-      roomnumber: 104,
-      roomtype: 'Luxury Room',
-      amenities: 'AC, TV, WiFi, Mini Bar, Jacuzzi',
-      price: 12000,
-      photo: 'assets/images/luxuryroom.jpg',
-      checkinTime: new Date('15-dec-2023 14:00:00'),
-      checkoutTime: new Date('16-dec-2023 12:00:00'),
-      rating: 4.9
-    }
 
-  ];
+  constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig, private httpClient: HttpClient) {
+    //console.log('Room Service is created');
+    console.log(this.config.apiEndpoint);  // This should now log the apiEndpoint value from the environment
+  }
 
-  constructor() { 
-    console.log('Room Service is created');
+  getRoomList() {
+    return this.httpClient.get<RoomDetails[]>('/api/Rooms');  // Adjust API endpoint if needed
   }
-  getRoomList(): RoomDetails[] {
-    return this.roomList;
+
+  addRoom(room: RoomDetails) {
+    return this.httpClient.post<RoomDetails[]>('/api/Rooms', room);
   }
+
+  editRoom(room: RoomDetails) {
+    return this.httpClient.put<RoomDetails[]>('/api/Rooms', room);
+  }
+  deleteRoom(ID: any) {
+    return this.httpClient.delete(`/api/Rooms?ID=${ID}`,ID);
+  }
+
+  getPhotos()
+  {
+    // dummy restApi from JSON Placeholder->photo
+    const request=new HttpRequest('GET',`https://jsonplaceholder.typicode.com/photos`,{
+        reportProgress:true,
+         responseType: 'blob'
+    });
+    return this.httpClient.request(request);
+  }
+
 }

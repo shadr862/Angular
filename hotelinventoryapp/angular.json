@@ -75,7 +75,8 @@
               "buildTarget": "hotelinventoryapp:build:production"
             },
             "development": {
-              "buildTarget": "hotelinventoryapp:build:development"
+              "buildTarget": "hotelinventoryapp:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

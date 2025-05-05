@@ -13,6 +13,7 @@
         <th>Checkin Time</th>
         <th>Rating</th>
         <th>Select Room</th>
+        <th>Delete Room</th>
       </tr>
     </thead>
 
@@ -29,6 +30,11 @@
         <td>
           <button class="btn btn-primary" (click)="selectRoom(room)">
             Select
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="DeleteRoom(room.roomnumber)">
+           Delete
           </button>
         </td>
       </tr>

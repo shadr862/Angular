@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "vy6pPNAn8z3H0HJ7zfUZD2Bi5UmWP9PQpOSzRmuhMfU=",
+  "Source": "hoteInventoryApi",
+  "BasePath": "_content/hoteInventoryApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self } from '@angular/core';
 import { RoomsService } from '../rooms/services/rooms.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule,FormsModule],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.scss',
-  providers: [RoomsService]
+  //providers: [RoomsService]//if we do not give the service provider ,it will give null injector error
 })
 export class EmployeeComponent implements OnInit{
  
-  EmployeeName='John Doe';
-  constructor(private services:RoomsService) { }
+  EmployeeName='Employe name inside employe component';
+  constructor(/*@Self()*/ private services: RoomsService) { 
+     //we create the local services and for adding @self we must add the provider of services
+  }
   
   ngOnInit(): void {
    

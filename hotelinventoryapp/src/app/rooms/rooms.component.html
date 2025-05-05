@@ -23,19 +23,18 @@
 
    <div>
       <button (click)="AddRoom()">Add Room</button>
+      <button (click)="EditRoom()">Edit Room</button>
+      <button (click)="toggle()">toggle</button>
    </div>
-
-   <button (click)="toggle()">toggle</button>
+   <div>
+      <h3>{{Totalbyte}} loaded</h3>
+   </div>
 
 </div>
 
 <div *ngIf="hiderooms">
    <!-- propertiest parent(room) to child(room-list) by
       properties binding and event binding.This is Component Communication-->
-   <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel"
-      (SelectedRoom_rm_list)="selectRoom($event)"></hinv-rooms-list>
+   <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel" (SelectedRoom_rm_list)="selectRoom($event)"
+      (DetetedID)="ReceiveDeletedID($event)"></hinv-rooms-list>
 </div>
-
-
-
-
