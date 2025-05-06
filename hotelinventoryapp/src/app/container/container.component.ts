@@ -9,11 +9,11 @@ import { RoomsService } from '../rooms/services/rooms.service';
   imports: [CommonModule],
   templateUrl: './container.component.html',
   styleUrl: './container.component.scss',
-  providers:[RoomsService]
+  /*providers:[RoomsService]*/
 })
 export class ContainerComponent implements OnInit,AfterContentInit,AfterContentChecked{
 
-  constructor(@Host() private services:RoomsService){}
+  constructor(/*@Host() private services:RoomsService*/){}
   
   //If we want use content child,we can use only these componet which i define it inside the ng conten in app.html
   //we can not do this:{static:true}.the dafult is false and fixed.so ngonit is not availabe for this

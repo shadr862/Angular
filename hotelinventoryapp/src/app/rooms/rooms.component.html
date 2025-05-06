@@ -5,6 +5,8 @@
    <hinv-header></hinv-header>
    <hinv-header></hinv-header>
    <h2>Html body of rooms componet:</h2>
+   <!--{{room$|async|json}}-->async pipe
+
    <div [hidden]="hiderooms">
       number of rooms:
       <div [ngStyle]="{'color':rooms.availablerooms>0 ? 'green' : 'red'}" [innerText]="numberOfRooms">
@@ -29,12 +31,15 @@
    <div>
       <h3>{{Totalbyte}} loaded</h3>
    </div>
+   
 
 </div>
 
-<div *ngIf="hiderooms">
+<div *ngIf="room$|async as rooms">
    <!-- propertiest parent(room) to child(room-list) by
       properties binding and event binding.This is Component Communication-->
-   <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel" (SelectedRoom_rm_list)="selectRoom($event)"
+      <!-- [roomList]="this.roomList" is removed for using async pipe-->
+      
+   <hinv-rooms-list [roomList]="rooms" [Title]="this.Titel" (SelectedRoom_rm_list)="selectRoom($event)"
       (DetetedID)="ReceiveDeletedID($event)"></hinv-rooms-list>
 </div>

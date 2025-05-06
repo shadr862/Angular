@@ -14,7 +14,7 @@ import { RoomsService } from '../services/rooms.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsListComponent implements OnInit,OnChanges,OnDestroy{
-  @Input() roomList:RoomDetails[]=[];
+  @Input() roomList:RoomDetails[] | null =[];
   @Input() Title:string='';
   @Output() SelectedRoom_rm_list=new EventEmitter<RoomDetails>();
   @Output() DetetedID=new EventEmitter<RoomDetails>();

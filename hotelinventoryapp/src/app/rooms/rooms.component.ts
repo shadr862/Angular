@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { Room ,RoomDetails} from './rooms';
 import { RoomsListComponent } from "./rooms-list/rooms-list.component";
 import { HeaderComponent } from "../header/header.component";
-import { After } from 'v8';
 import { RoomsService } from './services/rooms.service';
 import { HttpEventType } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'hinv-rooms', 
@@ -31,16 +31,24 @@ export class RoomsComponent implements OnInit,DoCheck,AfterViewInit,AfterViewChe
     bookedrooms: 90, 
     totalrooms: 100 
   };
+  
   //this is dependency injection
   constructor(@SkipSelf() private services:RoomsService) {
       //As we add @skipSelf,we do not have to have provider in this component,but have to have in parent and appModule
   }
+  //we will pass data from parent to child using async pipe
+
+  room$!: Observable<RoomDetails[]>; //wiil use async pipe
 
   Totalbyte=0;
   ngOnInit(): void {
     //console.log(this.headerComponent); when static is true in viewchild
     //console.log("parent ngOnit");
-    this.getRoom();
+    this.room$ = this.services.getRoom$; // Initialize here
+   
+     this.services.getRoom$.subscribe((data: RoomDetails[])=>{
+     this.roomList=data;//it is more faster than without Rjsx shareReplay getRoomList method
+    });
     //resi api request
     this.services.getPhotos().subscribe((event:any)=>{
       switch(event.type){
@@ -54,7 +62,6 @@ export class RoomsComponent implements OnInit,DoCheck,AfterViewInit,AfterViewChe
         }
         case HttpEventType.DownloadProgress:{
            this.Totalbyte+=event.loaded;
-           alert(this.Totalbyte);
            break;
         }
         case HttpEventType.Response:{
@@ -92,12 +99,7 @@ export class RoomsComponent implements OnInit,DoCheck,AfterViewInit,AfterViewChe
     //console.log(room);
     this.selectedRoom = room;
   }
-  getRoom()
-  {
-    this.services.getRoomList().subscribe(room=>{
-      this.roomList=room;
-    });
-  }
+  
 
   AddRoom() {
     const room: RoomDetails = {
@@ -112,7 +114,7 @@ export class RoomsComponent implements OnInit,DoCheck,AfterViewInit,AfterViewChe
     //this.roomList.push(room);
     // this.roomList = [...this.roomList, room]; Using spread operator to make the list dynamic
     this.services.addRoom(room).subscribe((data) => {
-      this.getRoom();
+      this.roomList = [...this.roomList, room];
     });
   }
 
@@ -127,16 +129,20 @@ export class RoomsComponent implements OnInit,DoCheck,AfterViewInit,AfterViewChe
       rating: 4.9
     };
 
-    this.services.editRoom(room).subscribe((data)=>{
-      this.getRoom();
-    })
+    this.services.editRoom(room).subscribe((data) => {
+      this.roomList = this.roomList.map(r => 
+        r.roomnumber === room.roomnumber ? room : r
+      );
+    });
+    
   }
 
   ReceiveDeletedID(ID:any)
   {
-      this.services.deleteRoom(ID).subscribe((data)=>{
-        this.getRoom();
-      })
+    this.services.deleteRoom(ID).subscribe(() => {
+      this.roomList = this.roomList.filter(room => room.roomnumber !== ID);
+    });
+    
   }
   
 }
