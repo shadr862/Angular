@@ -12,8 +12,10 @@
         <th>Room Price</th>
         <th>Checkin Time</th>
         <th>Rating</th>
+        <th>Room Booking</th>
         <th>Select Room</th>
         <th>Delete Room</th>
+
       </tr>
     </thead>
 
@@ -27,6 +29,11 @@
         <td>{{ room.price | currency : 'Tk' }}</td>
         <td>{{ room.checkinTime | date : 'short' }}</td>
         <td>{{ room.rating | number : '1.1-2' }}</td>
+        <td>
+          <button class="btn btn-primary" [routerLink]="['/rooms',room.roomnumber]">
+            Booking
+          </button>
+        </td>
         <td>
           <button class="btn btn-primary" (click)="selectRoom(room)">
             Select

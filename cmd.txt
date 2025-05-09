@@ -24,4 +24,14 @@ ng g c component_name
 creating service:
 ng g s rooms
 
+creating interceptor:
+ng g interceptor name like request
+
+creating angular material:
+ng add @angular/material
+
+
+add navigation:
+ng generate @angular/material:navigation <component-name>
+
 

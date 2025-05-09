@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
   selector: 'hinv-header',
   imports: [CommonModule],
   templateUrl: './header.component.html',
+  standalone:true,
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {

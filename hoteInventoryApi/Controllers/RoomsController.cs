@@ -57,25 +57,36 @@ namespace hoteInventoryApi.Controllers
 
             sqlConnection.Open();
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = sqlConnection;
-            cmd.CommandText = "SavaAllRoomDetails";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 0;
+            SqlCommand cmd = new SqlCommand
+            {
+                Connection = sqlConnection,
+                CommandText = "SavaAllRoomDetails",
+                CommandType = CommandType.StoredProcedure,
+                CommandTimeout = 0
+            };
+
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@roomnumber", room.roomnumber);
             cmd.Parameters.AddWithValue("@roomtype", room.roomtype);
             cmd.Parameters.AddWithValue("@amenities", room.amenities);
             cmd.Parameters.AddWithValue("@price", room.price);
             cmd.Parameters.AddWithValue("@rating", room.rating);
-            cmd.Parameters.AddWithValue("@checkinTime", DateTime.Parse(room.checkinTime));
-            cmd.Parameters.AddWithValue("@checkoutTime", DateTime.Parse(room.checkoutTime));
+
+            // Assuming room.checkinTime is string in ISO format
+            DateTime checkin = DateTime.Parse(room.checkinTime, null, System.Globalization.DateTimeStyles.RoundtripKind);
+            DateTime checkout = DateTime.Parse(room.checkoutTime, null, System.Globalization.DateTimeStyles.RoundtripKind);
+
+            cmd.Parameters.AddWithValue("@checkinTime", checkin);
+            cmd.Parameters.AddWithValue("@checkoutTime", checkout);
+
             int v = cmd.ExecuteNonQuery();
+
             cmd.Dispose();
             sqlConnection.Close();
 
             return Ok();
         }
+
 
         [HttpPut]
 

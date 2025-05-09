@@ -4,13 +4,14 @@ import { ChangeDetectionStrategy, EventEmitter, Input, Output } from '@angular/c
 import { RoomDetails } from '../rooms';
 import { FormsModule } from '@angular/forms';
 import { RoomsService } from '../services/rooms.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'hinv-rooms-list',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule],
+  standalone:true,
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.scss',
-  standalone:true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsListComponent implements OnInit,OnChanges,OnDestroy{

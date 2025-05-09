@@ -5,8 +5,12 @@
    <hinv-header></hinv-header>
    <hinv-header></hinv-header>
    <h2>Html body of rooms componet:</h2>
-   <!--{{room$|async|json}}-->async pipe
+   <!--{{room$|async|json}}async pipe-->
 
+   <h3>
+      {{getError|async}}
+   </h3>
+   
    <div [hidden]="hiderooms">
       number of rooms:
       <div [ngStyle]="{'color':rooms.availablerooms>0 ? 'green' : 'red'}" [innerText]="numberOfRooms">
@@ -22,24 +26,31 @@
    <div *ngIf="selectedRoom">
       {{selectedRoom | json}}
    </div>
-
    <div>
-      <button (click)="AddRoom()">Add Room</button>
+      number of room:{{roomcount|async}}
+   </div>
+   <div>
+      <!-- <button (click)="AddRoom()">Add Room</button> -->
       <button (click)="EditRoom()">Edit Room</button>
       <button (click)="toggle()">toggle</button>
    </div>
    <div>
       <h3>{{Totalbyte}} loaded</h3>
    </div>
-   
+
 
 </div>
-
+<!--
+example of async pipe
 <div *ngIf="room$|async as rooms">
+   <hinv-rooms-list [roomList]="rooms" ></hinv-rooms-list>
+</div>
+-->
+
+<div *ngIf="hiderooms">
    <!-- propertiest parent(room) to child(room-list) by
       properties binding and event binding.This is Component Communication-->
-      <!-- [roomList]="this.roomList" is removed for using async pipe-->
-      
-   <hinv-rooms-list [roomList]="rooms" [Title]="this.Titel" (SelectedRoom_rm_list)="selectRoom($event)"
+
+   <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel" (SelectedRoom_rm_list)="selectRoom($event)"
       (DetetedID)="ReceiveDeletedID($event)"></hinv-rooms-list>
 </div>
