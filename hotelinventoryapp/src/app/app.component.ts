@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, inject, OnInit, Optional, ViewChild, ViewChildren, ViewContainerRef} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, inject, OnInit, Optional, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RoomsComponent } from "./rooms/rooms.component";
 import { CommonModule } from '@angular/common';
@@ -14,22 +14,22 @@ import { AppNavComponent } from './app-nav/app-nav.component';
 
 @Component({
   selector: 'hinv-root',
-  standalone:true,
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [CommonModule, FormsModule,RouterModule,AppNavComponent],
+  imports: [CommonModule, FormsModule, RouterModule, AppNavComponent],
 })
-export class AppComponent implements OnInit,AfterViewInit {
-  
-  
+export class AppComponent implements OnInit, AfterViewInit {
+
+
   title = 'hotelinventoryapp';
-  role = ''; 
-  @ViewChild('user',{read:ViewContainerRef}) vcr!:ViewContainerRef;// create a ViewContainerRef for render it by ng template
-  @ViewChild('name',{static:true}) name!:ElementRef//catch the Html tag and insert the text
-  
+  role = '';
+  @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;// create a ViewContainerRef for render it by ng template
+  @ViewChild('name', { static: true }) name!: ElementRef//catch the Html tag and insert the text
+
   constructor(@Optional() private loggerService: LoggerService,
-  @Inject(localStorageToken) private localStorage:Storage,
-   private initService:InitService){
+    @Inject(localStorageToken) private localStorage: Storage,
+    private initService: InitService) {
     //As we use Optional decorator ,we donot have to providedIn in loggerService also donot have to provider in this componet
     //we also inject a local stroge token 
     //checking init service is workin
@@ -41,7 +41,9 @@ export class AppComponent implements OnInit,AfterViewInit {
     //we can catch name as static is true
     //this.name.nativeElement.innerText = 'Hello from Angular! example of viewchild to access html element';
     //we set and item
-    this.localStorage.setItem('name','Hotel California');
+    if (typeof window !== 'undefined' && this.localStorage) {
+      this.localStorage.setItem('name', 'Hotel California');
+    }
   }
   ngAfterViewInit(): void {
     //connect with componet and initiated the instance
@@ -49,8 +51,8 @@ export class AppComponent implements OnInit,AfterViewInit {
     //componentRef.instance.numberOfRooms=50;
   }
 
-  InputRole(value:any){
-    this.role=value;
+  InputRole(value: any) {
+    this.role = value;
   }
 
 }

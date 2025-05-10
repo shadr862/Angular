@@ -87,7 +87,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
           break;
         }
         case HttpEventType.Response: {
-          console.log(event.body);
+          //console.log(event.body);
           break;
         }
       }

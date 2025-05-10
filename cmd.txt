@@ -27,11 +27,16 @@ ng g s rooms
 creating interceptor:
 ng g interceptor name like request
 
-creating angular material:
+
+adding angular material:
 ng add @angular/material
 
 
 add navigation:
 ng generate @angular/material:navigation <component-name>
+
+
+creating directives
+ng g d name
 
 
