@@ -1,5 +1,5 @@
 // src/main.ts
-import { bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication, Title } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './app/AppConfig/appconfig.service';
@@ -8,6 +8,7 @@ import { InitService } from './app/init.service';
 import { APP_INITIALIZER } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
+import { RouteConfigToken, value } from './app/services/routeConfig.service';
 
 
 function initFactory(initService:InitService)
@@ -20,6 +21,8 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
 
     { provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG },
+    
+    { provide: RouteConfigToken, useValue: value},
     
     // register HttpClient + functional interceptors
     provideHttpClient(

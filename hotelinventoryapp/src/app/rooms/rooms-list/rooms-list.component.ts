@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RoomsService } from '../services/rooms.service';
 import { RouterModule } from '@angular/router';
 
+
 @Component({
   selector: 'hinv-rooms-list',
   imports: [CommonModule,FormsModule,RouterModule],

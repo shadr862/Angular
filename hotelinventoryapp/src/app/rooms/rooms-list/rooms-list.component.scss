@@ -1,3 +1,30 @@
 .room-listcss{
     background-color: aqua;
 }
+
+/* styles.css or rooms.component.scss */
+.rooms-container {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 170vh; /* Reduced height to fit the form better */
+  
+}
+.custom-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px; /* Adjust the font size */
+  padding: 15px 50px; /* Increase horizontal padding */
+  border-radius: 8px; /* Optional: Rounded corners */
+  width: 100%; /* Makes the button take up full width of its container */
+  max-width: 400px; /* Optional: Restrict the button's maximum width */
+}
+.center-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%; /* Takes up full height of the page */
+  margin-bottom: 20px;
+}
+

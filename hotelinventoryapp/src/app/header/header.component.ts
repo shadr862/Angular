@@ -9,7 +9,9 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   title = '';
-  constructor() {}
+  constructor() {
+    
+  }
   ngOnInit(): void {
   
   }

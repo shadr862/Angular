@@ -1,29 +1,35 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport 
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" 
+    [opened]="(isHandset$ | async) === false">
+    
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="rooms">Rooms</a>
-      <a mat-list-item routerLink="employee">Employee</a>
-      <a mat-list-item routerLink="rooms/add">Add Room</a>
-    </mat-nav-list>    
+      <a mat-list-item routerLink="/ds/rooms">Rooms</a>
+      <a mat-list-item routerLink="/ds/employee">Employee</a>
+      <a mat-list-item routerLink="/ds/rooms/add">Add Room</a>
+      <a mat-list-item routerLink="/ds/booking">Booking</a>
+    </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="toolbar">
+      <!-- Add hamburger menu for mobile -->
       @if (isHandset$ | async) {
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       }
-      <span>Hotel Inventory</span>
+      <span class="flex-grow">Hotel Inventory</span>
+
+      <!-- Show logged-in username and Logout button in the same line -->
+      <div class="user-info-logout">
+        <span *ngIf="username" class="user-info">Hello, {{ username }}!</span>
+        <button mat-button (click)="logout()" color="warn">Logout</button>
+      </div>
     </mat-toolbar>
-    <!-- Add Content Here -->
-     <router-outlet></router-outlet>
+
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
