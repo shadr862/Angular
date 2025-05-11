@@ -9,6 +9,7 @@ import { HttpEventType} from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+
 @Component({
   selector: 'hinv-rooms',
   imports: [CommonModule, RoomsListComponent, HeaderComponent],

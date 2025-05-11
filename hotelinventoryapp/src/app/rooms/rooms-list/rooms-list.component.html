@@ -1,6 +1,12 @@
+
+
 <div [ngClass]="'room-listcss'">
   <h2>Html body of rooms-list</h2>
   <h4>{{Title}}</h4>
+  <div class="center-container">
+  <button class="btn btn-primary custom-btn" routerLink="add">Add Room</button>
+</div>
+
   <table class="table">
     <thead>
       <tr>
@@ -30,7 +36,7 @@
         <td>{{ room.checkinTime | date : 'short' }}</td>
         <td>{{ room.rating | number : '1.1-2' }}</td>
         <td>
-          <button class="btn btn-primary" [routerLink]="['/rooms',room.roomnumber]">
+          <button class="btn btn-primary" [routerLink]="['/ds/rooms',room.roomnumber]">
             Booking
           </button>
         </td>
@@ -53,4 +59,7 @@
   <P>Hello!Write somethimg:</P>
   <input type="text" [(ngModel)]="name"/>
 
+</div>
+<div  class="rooms-container">
+     <router-outlet></router-outlet>
 </div>

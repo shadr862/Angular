@@ -7,8 +7,10 @@ import { EmployeeComponent } from "./employee/employee.component";
 import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstroage.token';
 import { InitService } from './init.service';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { AppNavComponent } from './app-nav/app-nav.component';
+import { NavigationEnd, NavigationStart, RouterModule, RouterOutlet } from '@angular/router';
+import { ConfigService } from './services/config.service';
+import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 
 
@@ -17,7 +19,7 @@ import { AppNavComponent } from './app-nav/app-nav.component';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [CommonModule, FormsModule, RouterModule, AppNavComponent],
+  imports: [CommonModule, FormsModule, RouterModule,RouterOutlet],
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
@@ -29,7 +31,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(@Optional() private loggerService: LoggerService,
     @Inject(localStorageToken) private localStorage: Storage,
-    private initService: InitService) {
+    private initService: InitService,
+    private configService:ConfigService,
+    private router:Router) 
+    {
     //As we use Optional decorator ,we donot have to providedIn in loggerService also donot have to provider in this componet
     //we also inject a local stroge token 
     //checking init service is workin
@@ -44,6 +49,24 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (typeof window !== 'undefined' && this.localStorage) {
       this.localStorage.setItem('name', 'Hotel California');
     }
+     //all events prints
+    // this.router.events.subscribe((event)=>{
+    //   console.log(event);
+    // })
+   
+
+    //listenting specific event
+    this.router.events.pipe(
+      filter((event)=> event instanceof NavigationStart) 
+    ).subscribe((event)=>{
+      console.log("Navigation Start successfully");
+    })
+
+    this.router.events.pipe(
+      filter((event)=> event instanceof NavigationEnd) 
+    ).subscribe((event)=>{
+      console.log("Navigation End successfully");
+    })
   }
   ngAfterViewInit(): void {
     //connect with componet and initiated the instance
