@@ -5,25 +5,28 @@ import { Room, RoomDetails } from './rooms';
 import { RoomsListComponent } from "./rooms-list/rooms-list.component";
 import { HeaderComponent } from "../header/header.component";
 import { RoomsService } from './services/rooms.service';
-import { HttpEventType} from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'hinv-rooms',
-  imports: [CommonModule, RoomsListComponent, HeaderComponent],
+  imports: [CommonModule, RoomsListComponent, HeaderComponent, ReactiveFormsModule],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
-  hotelName = 'Hotel California';
-  Titel = 'Sending Titel from rooms';
+  hotelName = 'Hotel California in America';
+  Titel = 'Hotel California';
   numberOfRooms = 100;
-  hiderooms = true;
+  hiderooms = false;
   roomList: RoomDetails[] = [];
   selectedRoom!: RoomDetails;
+  filterPrice = new FormControl(0);
+  filterRoomtype = new FormControl('');
 
   @ViewChild(HeaderComponent /*,{static:true}  default is false*/) headerComponent!: HeaderComponent;
   @ViewChildren(HeaderComponent) hearderChildrenComponet!: QueryList<HeaderComponent>; //static:false default. we cannot change it
@@ -33,30 +36,32 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     bookedrooms: 90,
     totalrooms: 100
   };
-  
- 
+
+
 
   Totalbyte = 0;
   roomcount!: Observable<number>;
 
-  error$=new Subject<string>();
-  getError=this.error$.asObservable();
+  error$ = new Subject<string>();
+  getError = this.error$.asObservable();
   room$!: Observable<RoomDetails[]>; //wiil use async pipe
 
   //this is dependency injection
-  constructor(@SkipSelf() private services: RoomsService,private cdr: ChangeDetectorRef) {
+  constructor(@SkipSelf() private services: RoomsService, private cdr: ChangeDetectorRef) {
     //As we add @skipSelf,we do not have to have provider in this component,but have to have in parent and appModule
   }
 
 
- 
 
   ngOnInit(): void {
     //console.log(this.headerComponent); when static is true in viewchild
     //console.log("parent ngOnit");
-    
+    this.services.refreshNeeded.subscribe(() => {
+      this.reload(); // reload on trigger
+    });
+
     this.room$ = this.services.getRoom$.pipe(
-      catchError(err=>{
+      catchError(err => {
         this.error$.next(err);
         return of([]);
       }),
@@ -66,11 +71,11 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     this.roomcount = this.services.getRoom$.pipe(
       map((r: RoomDetails[]) => r.length)
     );
-    
-    this.services.getRoomList().subscribe((data: RoomDetails[])=>{
-     this.roomList=data;//it is more faster than without Rjsx shareReplay getRoomList method
+
+
+    this.services.getRoomList().subscribe((data: RoomDetails[]) => {
+      this.roomList = data;//it is more faster than without Rjsx shareReplay getRoomList method
     });
-    
 
     //resi api request
     this.services.getPhotos().subscribe((event: any) => {
@@ -103,10 +108,10 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   ngAfterViewInit(): void {
     //it will call only onetime like ngOninit and contructor
-    this.headerComponent.title = 'frist change titel of header';
-    this.hearderChildrenComponet.last.title = ' frist change titel of header for multiple selector access';
-    console.log(this.headerComponent.title + "call from ngAfterViewInit");
-    this.cdr.detectChanges()
+    // this.headerComponent.title = 'frist change titel of header';
+    // this.hearderChildrenComponet.last.title = ' frist change titel of header for multiple selector access';
+    // console.log(this.headerComponent.title + "call from ngAfterViewInit");
+    // this.cdr.detectChanges()
     /*
     Avoiding this error:we use->this.cdr.detectChanges()
     ERROR ->RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError:
@@ -116,7 +121,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     */
   }
   ngAfterViewChecked(): void {
-    console.log(this.headerComponent.title + "call from ngAfterViewChecked");
+    //console.log(this.headerComponent.title + "call from ngAfterViewChecked");
+  }
+
+  reload() {
+    this.services.getRoomList().subscribe((data: RoomDetails[]) => {
+      this.roomList = data;
+    });
   }
 
   toggle() {
@@ -132,22 +143,22 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   }
 
 
-  // AddRoom() {
-  //   const room: RoomDetails = {
-  //     roomnumber: 120,
-  //     roomtype: 'Luxury Room',
-  //     amenities: 'AC, TV, WiFi, Mini Bar, Jacuzzi',
-  //     price: 12000,
-  //     checkinTime: new Date('15-dec-2023 14:00:00'),
-  //     checkoutTime: new Date('16-dec-2023 12:00:00'),
-  //     rating: 4.9
-  //   };
-  //   //this.roomList.push(room);
-  //   // this.roomList = [...this.roomList, room]; Using spread operator to make the list dynamic
-  //   this.services.addRoom(room).subscribe((data) => {
-  //     this.roomList = [...this.roomList, room];
-  //   });
-  // }
+  AddRoom() {
+    const room: RoomDetails = {
+      roomnumber: 120,
+      roomtype: 'Luxury Room',
+      amenities: 'AC, TV, WiFi, Mini Bar, Jacuzzi',
+      price: 12000,
+      checkinTime: '15-dec-2023 14:00:00',
+      checkoutTime: '16-dec-2023 12:00:00',
+      rating: 4.9
+    };
+    //this.roomList.push(room);
+    // this.roomList = [...this.roomList, room]; Using spread operator to make the list dynamic
+    this.services.addRoom(room).subscribe((data) => {
+      this.roomList = [...this.roomList, room];
+    });
+  }
 
   EditRoom() {
     const room: RoomDetails = {
@@ -155,8 +166,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       roomtype: 'Luxury Room Edited',
       amenities: 'AC, TV, WiFi, Mini Bar, Jacuzzi',
       price: 12000,
-      checkinTime: new Date('15-dec-2023 14:00:00'),
-      checkoutTime: new Date('16-dec-2023 12:00:00'),
+      checkinTime: '15-dec-2023 14:00:00',
+      checkoutTime: '16-dec-2023 12:00:00',
       rating: 4.9
     };
 

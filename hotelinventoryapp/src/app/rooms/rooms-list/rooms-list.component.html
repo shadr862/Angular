@@ -1,11 +1,13 @@
 
-
-<div [ngClass]="'room-listcss'">
-  <h2>Html body of rooms-list</h2>
-  <h4>{{Title}}</h4>
-  <div class="center-container">
-  <button class="btn btn-primary custom-btn" routerLink="add">Add Room</button>
+<div class="center-container">
+      <router-outlet></router-outlet>
 </div>
+<div [ngClass]="'room-listcss'">
+  <!-- <h2>Html body of rooms-list</h2> -->
+  <div>
+    <button class="btn btn-primary" routerLink="add">Add Room</button>
+  </div>
+  <h4 class="center-container">{{Title}}</h4>
 
   <table class="table">
     <thead>
@@ -17,16 +19,18 @@
         <th>Room Amenities</th>
         <th>Room Price</th>
         <th>Checkin Time</th>
+        <th>Checkout Time</th>
         <th>Rating</th>
         <th>Room Booking</th>
-        <th>Select Room</th>
+        <!-- <th>Select Room</th> -->
+        <th>Edit</th>
         <th>Delete Room</th>
 
       </tr>
     </thead>
 
     <tbody>
-      <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList; let e = even; let i = index">
+      <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList|filter:Price|search:RoomType; let e = even; let i = index">
         <td>{{ i | number }}</td>
         <td>{{ e ? "Even" : "Odd" }}</td>
         <td>{{ room.roomnumber }}</td>
@@ -34,32 +38,36 @@
         <td>{{ room.amenities | titlecase }}</td>
         <td>{{ room.price | currency : 'Tk' }}</td>
         <td>{{ room.checkinTime | date : 'short' }}</td>
+        <td>{{ room.checkoutTime| date : 'short' }}</td>
         <td>{{ room.rating | number : '1.1-2' }}</td>
         <td>
-          <button class="btn btn-primary" [routerLink]="['/ds/rooms',room.roomnumber]">
+          <button class="btn btn-primary" [routerLink]="['/ds/booking',room.roomnumber]">
             Booking
           </button>
         </td>
-        <td>
+        <!-- <td>
           <button class="btn btn-primary" (click)="selectRoom(room)">
             Select
           </button>
+        </td> -->
+        <td>
+          <button class="btn btn-primary" (click)="EditRoom(room)">
+            Edit
+          </button>
         </td>
         <td>
-          <button class="btn btn-primary" (click)="DeleteRoom(room.roomnumber)">
-           Delete
+          <button class="btn btn-primary" (click)="DeleteRoom(room.roomnumber)" [disabled]="disabledDelete">
+            Delete
           </button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div>Two way binding implementation using getter and setter</div>
+  <!-- <div>Two way binding implementation using getter and setter</div> -->
   <!--If you write Riaz it will give you alert msg-->
-  <P>Hello!Write somethimg:</P>
-  <input type="text" [(ngModel)]="name"/>
+  <!-- <P>Hello!Write somethimg:</P>
+  <input type="text" [(ngModel)]="name"/> -->
 
 </div>
-<div  class="rooms-container">
-     <router-outlet></router-outlet>
-</div>
+

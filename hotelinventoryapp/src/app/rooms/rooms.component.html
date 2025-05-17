@@ -1,7 +1,7 @@
 <!-- <h1>Welcome to {{hotelName}}</h1> -->
 <!--Use of viewchild ,viewchildren ,AfterViewInit,ngAfterViewChecked in room for header-->
 
-<div [ngClass]="'roomcss'">
+<div [ngClass]="'roomcss'" *ngIf="hiderooms">
    <hinv-header></hinv-header>
    <hinv-header></hinv-header>
    <h2>Html body of rooms componet:</h2>
@@ -10,7 +10,7 @@
    <h3>
       {{getError|async}}
    </h3>
-   
+
    <div [hidden]="hiderooms">
       number of rooms:
       <div [ngStyle]="{'color':rooms.availablerooms>0 ? 'green' : 'red'}" [innerText]="numberOfRooms">
@@ -30,9 +30,9 @@
       number of room:{{roomcount|async}}
    </div>
    <div>
-      <!-- <button (click)="AddRoom()">Add Room</button> -->
-      <button (click)="EditRoom()">Edit Room</button>
-      <button (click)="toggle()">toggle</button>
+      <button class="btn btn-primary" (click)="AddRoom()">Add Room</button>
+      <button class="btn btn-success" (click)="EditRoom()">Edit Room</button>
+      <button class="btn btn-primary" (click)="toggle()">toggle</button>
    </div>
    <div>
       <h3>{{Totalbyte}} loaded</h3>
@@ -46,11 +46,30 @@ example of async pipe
    <hinv-rooms-list [roomList]="rooms" ></hinv-rooms-list>
 </div>
 -->
+<!--the upper part is hidden by setting hindroom=false-->
+<div>
+   <div class="d-flex justify-content-center my-4">
+      <div class="d-flex align-items-center flex-wrap gap-3">
 
-<div *ngIf="hiderooms">
-   <!-- propertiest parent(room) to child(room-list) by
+         <label class="form-label mb-0 fw-bold text-success">
+            Price Filter:
+         </label>
+         <input type="number" class="form-control w-auto" [formControl]="filterPrice" placeholder="Enter price" />
+
+         <label class="form-label mb-0 fw-bold text-success">
+            Room Type Filter:
+         </label>
+         <input type="text" class="form-control w-auto" [formControl]="filterRoomtype" placeholder="Enter room type" />
+
+      </div>
+   </div>
+
+
+   <div>
+      <!-- propertiest parent(room) to child(room-list) by
       properties binding and event binding.This is Component Communication-->
 
-   <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel" (SelectedRoom_rm_list)="selectRoom($event)"
-      (DetetedID)="ReceiveDeletedID($event)"></hinv-rooms-list>
-</div>
+      <hinv-rooms-list [roomList]="this.roomList" [Title]="this.Titel" (SelectedRoom_rm_list)="selectRoom($event)"
+         (DetetedID)="ReceiveDeletedID($event)" [Price]="filterPrice.value?filterPrice.value:0"
+         [RoomType]="filterRoomtype.value?filterRoomtype.value:''"></hinv-rooms-list>
+   </div>

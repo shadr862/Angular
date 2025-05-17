@@ -1,0 +1,105 @@
+<div class="d-flex justify-content-center my-4">
+  <div class="d-flex align-items-center flex-wrap gap-3">
+
+    <label class="form-label mb-0 fw-bold text-success">
+      Employee Name Filter:
+    </label>
+    <!-- <input type="text" class="form-control w-auto" [formControl]="employeeNameFilter" placeholder="Enter Employee Name"> -->
+  </div>
+</div>
+
+<div class="container mt-4">
+
+  <!-- Employee List Table -->
+  <h4 class="mb-3">Employee List</h4>
+  <div class="table-responsive mb-5">
+    <table class="table table-bordered table-striped table-hover align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Joining Date</th>
+          <th>Allow</th>
+          <th>Religion</th>
+          <th>Delete</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employeeList ">
+          <td>{{ emp.employeeId }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phone }}</td>
+          <td>{{ emp.joiningDate | date: 'shortDate' }}</td>
+          <td><input type="checkbox" [checked]="emp.allow" disabled></td>
+          <td>{{ emp.religion || 'N/A' }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="onDeleteEmployee(emp.employeeId)" [disabled]="disableDelete">
+              Delete
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="onEditEmployee(emp)" [disabled]="disableDelete">
+             Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Address Table -->
+  <h4 class="mb-3">Address List</h4>
+  <div class="table-responsive mb-5">
+    <table class="table table-bordered table-striped table-hover align-middle">
+      <thead class="table-info">
+        <tr>
+          <th>Employee ID</th>
+          <th>Employee Name</th>
+          <th>Address Line</th>
+          <th>City</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employeeList ">
+          <td>{{ emp.employeeId }}</td>
+          <td>{{ emp.name}}</td>
+          <td>{{ emp.address.addressLine }}</td>
+          <td>{{ emp.address.city }}</td>
+          <td>{{ emp.address.country }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Relational Status Table -->
+  <h4 class="mb-3">Relational Status List</h4>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover align-middle">
+      <thead class="table-warning">
+        <tr>
+          <th>Employee ID</th>
+          <th>Employee Name</th>
+          <th>Relational With</th>
+          <th>Relational Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let emp of employeeList ">
+          <tr *ngFor="let rel of emp.relationalStatusList">
+            <td>{{ emp.employeeId }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ rel.name }}</td>
+            <td>{{ rel.status }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+

@@ -18,12 +18,12 @@ export class ContainerComponent implements OnInit,AfterContentInit,AfterContentC
   
   //If we want use content child,we can use only these componet which i define it inside the ng conten in app.html
   //we can not do this:{static:true}.the dafult is false and fixed.so ngonit is not availabe for this
-  @ContentChild(EmployeeComponent) employee!: EmployeeComponent;
+  //@ContentChild(EmployeeComponent) employee!: EmployeeComponent;
   ngOnInit(): void {
 
   }
   ngAfterContentInit(): void {
-    this.employee.EmployeeName = 'Change the Employe name using ContentChild';
+    //this.employee.EmployeeName = 'Change the Employe name using ContentChild';
   }
 
   ngAfterContentChecked(): void {

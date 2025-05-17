@@ -1,5 +1,8 @@
-<div [ngClass]="'employeecss'">
+<!-- <div [ngClass]="'employeecss'">
     <h2>Html body of  Employee</h2>
     <p>The Employee name is:{{EmployeeName}}</p>
-</div>
+</div> -->
+ <button class="btn btn-primary" routerLink="add">Add Employee</button>
+<router-outlet></router-outlet>
 
+<hinv-employee-list [employeeList]="this.employeeList" [disableDelete]="this.disableDelete" (deletedId)="DeleteEmployee($event)"></hinv-employee-list>

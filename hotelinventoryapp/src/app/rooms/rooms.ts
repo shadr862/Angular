@@ -9,7 +9,7 @@ export interface RoomDetails{
     roomtype:string;
     amenities:string;
     price:number;
-    checkinTime:Date;
-    checkoutTime:Date;
+    checkinTime:string;
+    checkoutTime:string;
     rating : number;
 }

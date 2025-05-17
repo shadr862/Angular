@@ -3,17 +3,20 @@ import { RoomDetails } from '../rooms';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';  // Adjust path
 import { AppConfig } from '../../AppConfig/appconfig.interface'; // Adjust path
-import { Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'  // Ensures global availability
 })
 export class RoomsService {
   getRoom$!: Observable<RoomDetails[]>;
+
   header=new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer your-token-here'
   })
+
+  
 
   
   constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig, private httpClient: HttpClient) {
@@ -23,6 +26,16 @@ export class RoomsService {
       shareReplay(1) 
     );
   }
+//refeesh the page
+private refreshNeeded$ = new BehaviorSubject<void>(undefined);
+
+get refreshNeeded() {
+  return this.refreshNeeded$.asObservable();
+}
+
+triggerRefresh() {
+  this.refreshNeeded$.next();
+}
   
 
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("hoteInventoryApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00687cf102e94fe30adee7ca1b685415e38c9086")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+635b5ec3ba20b6834f5828c1bf618c8ce4b9f92c")]
 [assembly: System.Reflection.AssemblyProductAttribute("hoteInventoryApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("hoteInventoryApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

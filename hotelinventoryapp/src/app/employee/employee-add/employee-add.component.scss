@@ -1,0 +1,72 @@
+.employee-form-card {
+  max-width: 680px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 100%;
+  max-width: 320px;
+}
+
+.guest-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.custom-submit-button,
+.custom-action-button {
+  min-width: 120px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.custom-submit-button {
+  background-color: #1976d2;
+  color: white;
+}
+
+.custom-submit-button:hover {
+  background-color: #155fa0;
+}
+
+.custom-action-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.custom-action-button:hover {
+  background-color: #388e3c;
+}
+
+.remove-button {
+  height: 40px;
+  align-self: flex-end;
+}

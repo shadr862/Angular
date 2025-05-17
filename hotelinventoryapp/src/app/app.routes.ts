@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { AppNavComponent } from './app-nav/app-nav.component';
 import { canActivateLoginGuard } from './guards/login.guard';
 import { CanLoadGuard } from './guards/canLoad.guard';
+import { BookingListComponent } from './booking/booking-list/booking-list.component';
+import { BookingAddComponent } from './booking/booking-add/booking-add.component';
 
 export const routes: Routes = [
   {

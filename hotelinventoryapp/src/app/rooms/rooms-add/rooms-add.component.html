@@ -1,4 +1,3 @@
-
 <!-- {{Room|json}}
 <div>pristine:{{roomsForm.pristine}}</div>
 <div>dirty:{{roomsForm.dirty}}</div>
@@ -16,82 +15,61 @@
  </div> -->
 
 
-<div class="d-flex justify-content-center align-items-start vh-100 bg-light pt-5">
-  <form #roomsForm="ngForm" (ngSubmit)="AddRoom(roomsForm)" class="p-5 border rounded-4 shadow mt-5"
-    style="width: 100%; max-width: 500px; background-color: #e6f2ff;">
-    
-    <h2 class="text-center text-primary mb-4 fw-bold">🏨 Add Room</h2>
+<div class="container mt-5">
+  <form #roomsForm="ngForm" (ngSubmit)="AddRoom(roomsForm)">
+    <h3 class="text-center mb-3">Add Room</h3>
 
-    <!-- ✅ Success Message -->
-    <div *ngIf="SuccessMessage!=null" class="alert alert-success text-center mb-3">
+    <div *ngIf="SuccessMessage" class="alert alert-success text-center">
       {{ SuccessMessage }}
     </div>
 
-    <!-- Room Number -->
-    <div class="mb-3">
-      <label for="roomnumber" class="form-label">Room Number</label>
-      <input class="form-control" type="number" id="roomnumber" name="roomnumber" placeholder="Enter room number"
-        [(ngModel)]="Room.roomnumber" required />
+    <div class="mb-2">
+      <label>Room Number</label>
+      <input type="number" name="roomnumber" [(ngModel)]="Room.roomnumber" required class="form-control" />
     </div>
 
-    <!-- Room Type -->
-    <div class="mb-3">
-      <label for="roomtype" class="form-label">Room Type</label>
-      <input class="form-control" type="text" id="roomtype" name="roomtype" placeholder="Single, Double, Suite"
-        [(ngModel)]="Room.roomtype" required />
+    <div class="mb-2">
+      <label>Room Type</label>
+      <input type="text" name="roomtype" [(ngModel)]="Room.roomtype" required class="form-control" />
     </div>
 
-    <!-- Amenities -->
-    <div class="mb-3">
-      <label for="amenities" class="form-label">Amenities</label>
-      <input class="form-control" type="text" id="amenities" name="amenities" placeholder="WiFi, AC, TV"
-        [(ngModel)]="Room.amenities" minlength="5" maxlength="20" #roomAmenities="ngModel" required />
-      <div class="alert alert-danger" *ngIf="roomAmenities.errors?.['minlength']">
-        Amenities should be minimum length 5!
-      </div>
-      <div class="alert alert-danger" *ngIf="roomAmenities.errors?.['maxlength']">
-        Amenities should be maximum length 20!
-      </div>
-      <div class="alert alert-danger" *ngIf="roomAmenities.dirty && roomAmenities.errors?.['required']">
-        Amenities should be provided!
-      </div>
+    <div class="mb-2">
+      <label>Amenities</label>
+      <input type="text" name="amenities" [(ngModel)]="Room.amenities" required minlength="5" maxlength="20"
+        #roomAmenities="ngModel" class="form-control" />
+      <div *ngIf="roomAmenities.errors?.['minlength']" class="text-danger">Min length 5</div>
+      <div *ngIf="roomAmenities.errors?.['maxlength']" class="text-danger">Max length 20</div>
+      <div *ngIf="roomAmenities.dirty && roomAmenities.errors?.['required']" class="text-danger">Required</div>
     </div>
 
-    <!-- Price -->
-    <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
-      <input class="form-control" type="number" id="price" name="price" placeholder="Enter price per night"
-        [(ngModel)]="Room.price" required />
+    <div class="mb-2">
+      <label>Price</label>
+      <input type="number" name="price" [(ngModel)]="Room.price" required class="form-control" />
     </div>
 
-    <!-- Check-In Time -->
-    <div class="mb-3">
-      <label for="checkinTime" class="form-label">Check-In Time</label>
-      <input class="form-control" type="date" id="checkinTime" name="checkinTime" [(ngModel)]="Room.checkinTime"
-        required />
+    <div class="mb-2">
+      <label>Check-In</label>
+      <input type="date" name="checkinTime" [(ngModel)]="Room.checkinTime" required class="form-control"
+        (change)="validateDates()" />
     </div>
 
-    <!-- Check-Out Time -->
-    <div class="mb-3">
-      <label for="checkoutTime" class="form-label">Check-Out Time</label>
-      <input class="form-control" type="date" id="checkoutTime" name="checkoutTime" [(ngModel)]="Room.checkoutTime"
-        required />
-    </div>
-
-    <!-- Rating -->
-    <div class="mb-4">
-      <label for="rating" class="form-label">Rating</label>
-      <input class="form-control" type="number" id="rating" name="rating" placeholder="1 to 5" [(ngModel)]="Room.rating"
-        min="1" max="5" #rating="ngModel" required />
-      <div *ngIf="rating.errors?.['max']" class="alert alert-danger">
-        Rating must not be greater than 5!
-      </div>
-      <div *ngIf="rating.dirty && rating.errors?.['min']" class="alert alert-danger">
-        Rating must not be less than 1!
+    <div class="mb-2">
+      <label>Check-Out</label>
+      <input type="date" name="checkoutTime" [(ngModel)]="Room.checkoutTime" required class="form-control"
+        (change)="validateDates()" />
+      <div *ngIf="dateError" class="text-danger">
+        Check-out must be after check-in date.
       </div>
     </div>
 
-    <!-- Submit Button -->
-    <button [disabled]="roomsForm.invalid" type="submit" class="btn btn-success w-100">Submit</button>
+    <div class="mb-3">
+      <label>Rating (1–5)</label>
+      <input type="number" name="rating" [(ngModel)]="Room.rating" required min="1" max="5" #rating="ngModel"
+        class="form-control" />
+      <div *ngIf="rating.errors?.['max']" class="text-danger">Max 5</div>
+      <div *ngIf="rating.dirty && rating.errors?.['min']" class="text-danger">Min 1</div>
+    </div>
+
+    <button type="submit" [disabled]="roomsForm.invalid || dateError" class="btn btn-primary w-100">Submit</button>
   </form>
 </div>
