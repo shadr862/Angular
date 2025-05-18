@@ -36,4 +36,9 @@ export class BookingService {
     console.log(url);
     return this.http.delete<BookingDetailsGet[]>(url)
   }
+
+  updateBookroom(book:BookingDetailsGet)
+  {
+    return this.http.put<BookingDetailsGet[]>('https://localhost:44348/api/Booking',book);
+  }
 }

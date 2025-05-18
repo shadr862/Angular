@@ -2,72 +2,56 @@
 <div class="center-container">
       <router-outlet></router-outlet>
 </div>
-<div [ngClass]="'room-listcss'">
-  <!-- <h2>Html body of rooms-list</h2> -->
-  <div>
-    <button class="btn btn-primary" routerLink="add">Add Room</button>
-  </div>
-  <h4 class="center-container">{{Title}}</h4>
+<div class="center-container">
+    <div class="colorful-title">{{Title}}</div>
+</div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Index</th>
-        <th>Even/Odd</th>
-        <th>Room Number</th>
-        <th>Room Type</th>
-        <th>Room Amenities</th>
-        <th>Room Price</th>
-        <th>Checkin Time</th>
-        <th>Checkout Time</th>
-        <th>Rating</th>
-        <th>Room Booking</th>
-        <!-- <th>Select Room</th> -->
-        <th>Edit</th>
-        <th>Delete Room</th>
+<table class="table table-striped table-hover table-bordered align-middle text-center">
+  <thead class="table-success">
+    <tr>
+      <th>Index</th>
+      <th>Even/Odd</th>
+      <th>Room Number</th>
+      <th>Room Type</th>
+      <th>Room Amenities</th>
+      <th>Room Price</th>
+      <th>Checkin Time</th>
+      <th>Checkout Time</th>
+      <th>Rating</th>
+      <th>Room Booking</th>
+      <th>Edit</th>
+      <th>Delete Room</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList | filter:Price | search:RoomType | sort:priceSortOrder; let e = even; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ e ? 'Even' : 'Odd' }}</td>
+      <td>{{ room.roomnumber }}</td>
+      <td>{{ room.roomtype }}</td>
+      <td>{{ room.amenities | titlecase }}</td>
+      <td>{{ room.price | currency:'Tk' }}</td>
+      <td>{{ room.checkinTime | date:'short' }}</td>
+      <td>{{ room.checkoutTime | date:'short' }}</td>
+      <td>{{ room.rating | number:'1.1-2' }}</td>
+      <td>
+        <button class="btn btn-success btn-sm" [routerLink]="['/ds/booking', room.roomnumber]">Booking</button>
+      </td>
+      <td>
+        <button class="btn btn-warning btn-sm text-dark" (click)="EditRoom(room)">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="DeleteRoom(room.roomnumber)" [disabled]="disabledDelete">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList|filter:Price|search:RoomType; let e = even; let i = index">
-        <td>{{ i | number }}</td>
-        <td>{{ e ? "Even" : "Odd" }}</td>
-        <td>{{ room.roomnumber }}</td>
-        <td>{{ room.roomtype }}</td>
-        <td>{{ room.amenities | titlecase }}</td>
-        <td>{{ room.price | currency : 'Tk' }}</td>
-        <td>{{ room.checkinTime | date : 'short' }}</td>
-        <td>{{ room.checkoutTime| date : 'short' }}</td>
-        <td>{{ room.rating | number : '1.1-2' }}</td>
-        <td>
-          <button class="btn btn-primary" [routerLink]="['/ds/booking',room.roomnumber]">
-            Booking
-          </button>
-        </td>
-        <!-- <td>
-          <button class="btn btn-primary" (click)="selectRoom(room)">
-            Select
-          </button>
-        </td> -->
-        <td>
-          <button class="btn btn-primary" (click)="EditRoom(room)">
-            Edit
-          </button>
-        </td>
-        <td>
-          <button class="btn btn-primary" (click)="DeleteRoom(room.roomnumber)" [disabled]="disabledDelete">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 
   <!-- <div>Two way binding implementation using getter and setter</div> -->
   <!--If you write Riaz it will give you alert msg-->
   <!-- <P>Hello!Write somethimg:</P>
   <input type="text" [(ngModel)]="name"/> -->
 
-</div>
+
 

@@ -1,4 +1,9 @@
-<div class="container mt-5">
+
+<div class="container mt-5 position-relative">
+
+  <!-- Close Button (top-right corner) -->
+  <button class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" (click)="close()">×</button>
+
   <form #roomsForm="ngForm" (ngSubmit)="EditRoom(roomsForm)">
     <h3 class="text-center mb-3">Edit Room</h3>
 
@@ -18,7 +23,8 @@
 
     <div class="mb-2">
       <label>Amenities</label>
-      <input type="text" name="amenities" [(ngModel)]="Room.amenities" required minlength="5" maxlength="20" #roomAmenities="ngModel" class="form-control" />
+      <input type="text" name="amenities" [(ngModel)]="Room.amenities" required minlength="5" maxlength="20"
+        #roomAmenities="ngModel" class="form-control" />
       <div *ngIf="roomAmenities.errors?.['minlength']" class="text-danger">Min length 5</div>
       <div *ngIf="roomAmenities.errors?.['maxlength']" class="text-danger">Max length 20</div>
       <div *ngIf="roomAmenities.dirty && roomAmenities.errors?.['required']" class="text-danger">Required</div>
@@ -31,14 +37,14 @@
 
     <div class="mb-2">
       <label>Check-In</label>
-      <input type="date" name="checkinTime" [(ngModel)]="Room.checkinTime" required 
-      class="form-control" (change)="validateDates()" />
+      <input type="date" name="checkinTime" [(ngModel)]="Room.checkinTime" required class="form-control"
+        (change)="validateDates()" />
     </div>
 
     <div class="mb-2">
       <label>Check-Out</label>
-      <input type="date" name="checkoutTime" [(ngModel)]="Room.checkoutTime" 
-      required class="form-control" (change)="validateDates()" />
+      <input type="date" name="checkoutTime" [(ngModel)]="Room.checkoutTime" required class="form-control"
+        (change)="validateDates()" />
       <div *ngIf="dateError" class="text-danger">
         Check-out must be after check-in date.
       </div>
@@ -46,12 +52,12 @@
 
     <div class="mb-3">
       <label>Rating (1–5)</label>
-      <input type="number" name="rating" [(ngModel)]="Room.rating" required min="1" max="5" #rating="ngModel" class="form-control" />
+      <input type="number" name="rating" [(ngModel)]="Room.rating" required min="1" max="5" #rating="ngModel"
+        class="form-control" />
       <div *ngIf="rating.errors?.['max']" class="text-danger">Max 5</div>
       <div *ngIf="rating.dirty && rating.errors?.['min']" class="text-danger">Min 1</div>
     </div>
 
-    <button type="submit" [disabled]="roomsForm.invalid||dateError" class="btn btn-primary w-100">Submit</button>
+    <button type="submit" [disabled]="roomsForm.invalid || dateError" class="btn btn-primary w-100">Submit</button>
   </form>
 </div>
-

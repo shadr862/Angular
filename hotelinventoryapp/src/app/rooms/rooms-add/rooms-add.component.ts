@@ -3,7 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RoomDetails } from '../rooms';
 import { RoomsService } from '../services/rooms.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 
 @Component({
@@ -13,6 +13,7 @@ import { switchMap, tap } from 'rxjs';
   styleUrl: './rooms-add.component.scss'
 })
 export class RoomsAddComponent {
+
 
   Room: RoomDetails = {
     roomnumber: 0,
@@ -24,7 +25,7 @@ export class RoomsAddComponent {
     rating: 0
   };
   dateError!: boolean;
-  constructor(private service: RoomsService, private router: Router) { }
+  constructor(private service: RoomsService, private router: Router, private route: ActivatedRoute) { }
 
   validateDates() {
     const checkin = new Date(this.Room.checkinTime);
@@ -58,5 +59,10 @@ export class RoomsAddComponent {
       });
     })
    
+  }
+
+  close()
+  {
+    return this.router.navigate(['/ds/rooms']);
   }
 }

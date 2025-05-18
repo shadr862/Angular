@@ -6,7 +6,9 @@ import { BookingService } from '../service/booking.service';
 import { BookingDetailsGet } from '../booking';
 import { FormControl ,ReactiveFormsModule} from '@angular/forms';
 import { SearchBookListPipe } from '../Custompipe/search-book-list.pipe';
-import { LoginService } from '../../login/login-service/login.service';
+import { Router, RouterModule } from '@angular/router';
+import { LoginService } from '../../Auth/login-service/login.service';
+
 
 @Component({
   selector: 'hinv-booking-list',
@@ -19,11 +21,13 @@ export class BookingListComponent implements OnInit{
     BookingNamefilter=new FormControl('');
     disableDelete=true;
 
-    constructor(private BookingService:BookingService,private loginService:LoginService){}
+    constructor(private BookingService:BookingService,
+      private loginService:LoginService,
+      private router:Router){}
   
     ngOnInit(): void {
         
-       if(this.loginService.isloggedinAdmin)
+       if(this.loginService.isloggedinAdmin  || this.loginService.isloggedinManager)
        {
         this.disableDelete=false
        }
@@ -40,6 +44,11 @@ export class BookingListComponent implements OnInit{
       this.BookingService.getBookroom().subscribe((data)=>{
            this.BookingFormList = data;
        })
+    }
+
+    onEditBooking(book:any)
+    {
+      this.router.navigate(['/ds/booking','edit'],{state:{book}});
     }
     onDeleteBooking(ID:number)
     {

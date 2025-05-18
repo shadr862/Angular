@@ -192,6 +192,99 @@ namespace hoteInventoryApi.Controllers
                 return StatusCode(500, new { message = "Error deleting booking", error = ex.Message });
             }
         }
+        [HttpPut]
+        public IActionResult UpdateBookingDetails(BookingDetailsGet booking)
+        {
+            using (SqlConnection conn = new SqlConnection("Server=DESKTOP-JBRE4TR; Database=HotelInventory; Trusted_Connection=True;"))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // 1. Update Bookings
+                    SqlCommand cmdBooking = new SqlCommand(@"
+                UPDATE Bookings SET
+                    RoomId = @RoomId,
+                    GuestName = @GuestName,
+                    GuestEmail = @GuestEmail,
+                    MobileNumber = @MobileNumber,
+                    CheckinDate = @CheckinDate,
+                    CheckoutDate = @CheckoutDate,
+                    BookingStatus = @BookingStatus,
+                    BookingAmount = @BookingAmount,
+                    BookingDate = @BookingDate,
+                    TnC = @TnC,
+                    Passport = @Passport
+                WHERE BookingID = @BookingID", conn, transaction);
+
+                    cmdBooking.Parameters.AddWithValue("@BookingID", booking.BookingID);
+                    cmdBooking.Parameters.AddWithValue("@RoomId", booking.roomId);
+                    cmdBooking.Parameters.AddWithValue("@GuestName", booking.GuestName ?? "");
+                    cmdBooking.Parameters.AddWithValue("@GuestEmail", booking.GuestEmail ?? "");
+                    cmdBooking.Parameters.AddWithValue("@MobileNumber", booking.MobileNumber ?? "");
+                    cmdBooking.Parameters.AddWithValue("@CheckinDate", booking.CheckinDate ?? (object)DBNull.Value);
+                    cmdBooking.Parameters.AddWithValue("@CheckoutDate", booking.CheckoutDate ?? (object)DBNull.Value);
+                    cmdBooking.Parameters.AddWithValue("@BookingStatus", booking.BookingStatus ?? "");
+                    cmdBooking.Parameters.AddWithValue("@BookingAmount", booking.BookingAmount);
+                    cmdBooking.Parameters.AddWithValue("@BookingDate", booking.BookingDate ?? (object)DBNull.Value);
+                    cmdBooking.Parameters.AddWithValue("@TnC", booking.TnC);
+                    cmdBooking.Parameters.AddWithValue("@Passport", string.IsNullOrEmpty(booking.Passport) ? (object)DBNull.Value : booking.Passport);
+
+                    cmdBooking.ExecuteNonQuery();
+
+                    // 2. Update Address (assumes 1:1 relationship with BookingID)
+                    SqlCommand cmdAddress = new SqlCommand(@"
+                UPDATE Addresses SET
+                    AddressLine1 = @AddressLine1,
+                    AddressLine2 = @AddressLine2,
+                    City = @City,
+                    State = @State,
+                    Country = @Country,
+                    ZipCode = @ZipCode
+                WHERE BookingID = @BookingID", conn, transaction);
+
+                    cmdAddress.Parameters.AddWithValue("@BookingID", booking.BookingID);
+                    cmdAddress.Parameters.AddWithValue("@AddressLine1", booking.Address?.AddressLine1 ?? "");
+                    cmdAddress.Parameters.AddWithValue("@AddressLine2", booking.Address?.AddressLine2 ?? "");
+                    cmdAddress.Parameters.AddWithValue("@City", booking.Address?.City ?? "");
+                    cmdAddress.Parameters.AddWithValue("@State", booking.Address?.State ?? "");
+                    cmdAddress.Parameters.AddWithValue("@Country", booking.Address?.Country ?? "");
+                    cmdAddress.Parameters.AddWithValue("@ZipCode", booking.Address?.ZipCode ?? "");
+
+                    cmdAddress.ExecuteNonQuery();
+
+                    // 3. Delete old GuestForms and insert new ones
+                    SqlCommand deleteGuests = new SqlCommand("DELETE FROM GuestForms WHERE BookingID = @BookingID", conn, transaction);
+                    deleteGuests.Parameters.AddWithValue("@BookingID", booking.BookingID);
+                    deleteGuests.ExecuteNonQuery();
+
+                    if (booking.GuestForm != null)
+                    {
+                        foreach (var guest in booking.GuestForm)
+                        {
+                            SqlCommand cmdGuest = new SqlCommand(@"
+                        INSERT INTO GuestForms (BookingID, GuestName, Age)
+                        VALUES (@BookingID, @GuestName, @Age)", conn, transaction);
+
+                            cmdGuest.Parameters.AddWithValue("@BookingID", booking.BookingID);
+                            cmdGuest.Parameters.AddWithValue("@GuestName", guest.GuestName ?? "");
+                            cmdGuest.Parameters.AddWithValue("@Age", guest.Age);
+
+                            cmdGuest.ExecuteNonQuery();
+                        }
+                    }
+
+                    transaction.Commit();
+                    return Ok(new { Message = "Booking updated successfully!" });
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return StatusCode(500, $"Error: {ex.Message}");
+                }
+            }
+        }
 
 
 

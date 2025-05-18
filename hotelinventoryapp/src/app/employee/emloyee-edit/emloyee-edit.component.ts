@@ -12,40 +12,56 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EmployeeService } from '../service/employee.service';
 import { switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { EmployeeCustomValidator } from '../custom-validator/employee-custom-validator';
+import { LoginService } from '../../Auth/login-service/login.service';
 
 @Component({
   selector: 'hinv-emloyee-edit',
-  imports: [ReactiveFormsModule, CommonModule, MatCardModule, MatFormFieldModule,
-    MatDatepickerModule, MatNativeDateModule, MatInputModule, MatExpansionModule,
-    MatIcon, MatCheckboxModule],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatIcon,
+    MatCheckboxModule
+  ],
   templateUrl: './emloyee-edit.component.html',
-  styleUrl: './emloyee-edit.component.scss'
+  styleUrls: ['./emloyee-edit.component.scss'] // ✅ fixed typo
 })
 export class EmloyeeEditComponent implements OnInit {
-  EmployeeForm!: FormGroup
+  EmployeeForm!: FormGroup;
   passedEmployee: any;
-  constructor(private fb: FormBuilder,
+
+  constructor(
+    private fb: FormBuilder,
     private employeeService: EmployeeService,
-    private router: Router) { }
+    private router: Router,
+    private loginService:LoginService
+  ) {}
 
   ngOnInit(): void {
-
     this.EmployeeForm = this.fb.group({
       Id: new FormControl({ value: '', disabled: true }),
-      Name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      Email: new FormControl('', [Validators.required, Validators.email]),
+      Name: ['', [Validators.required, Validators.minLength(3),EmployeeCustomValidator.NameValidator,EmployeeCustomValidator.SpeecialCharValidator('*')]],
+      Email: new FormControl('', [Validators.required, EmployeeCustomValidator.EmailValidator]),
       Phone: new FormControl('', [Validators.required]),
       JoiningDate: ['', [Validators.required]],
+      Role:[{value:'',disabled:true},[Validators.required]],
 
       AddressE: this.fb.group({
         AddressLine: [''],
         City: [''],
-        Country: [''],
+        Country: ['']
       }),
 
-      RelationalStatusForm: this.fb.array([this.AddRelationalStatusControl()]),
+      RelationalStatusForm: this.fb.array([]), // ✅ initialized empty
       Allow: ['', Validators.requiredTrue]
-    })
+    });
 
     this.passedEmployee = history.state.emp;
     this.getDefaultData();
@@ -53,35 +69,50 @@ export class EmloyeeEditComponent implements OnInit {
 
   getDefaultData() {
     if (this.passedEmployee) {
-      alert(JSON.stringify(this.passedEmployee))
+      // ✅ dynamically add Religion if present
+      if (this.passedEmployee.religion) {
+        this.addReligion();
+      }
+
       this.EmployeeForm.patchValue({
-        Id:this.passedEmployee.employeeId,
+        Id: this.passedEmployee.employeeId,
         Name: this.passedEmployee.name,
         Email: this.passedEmployee.email,
         Phone: this.passedEmployee.phone,
-        Religion: this.passedEmployee.religion?this.passedEmployee.religion:'',
-        JoiningDate:new Date(this.passedEmployee.joiningDate).toISOString().slice(0, 10),
-
+        Religion: this.passedEmployee.religion ?? '',
+        JoiningDate: new Date(this.passedEmployee.joiningDate).toISOString().slice(0, 10),
+        Role:this.passedEmployee.role,
         AddressE: {
-          AddressLine: this.passedEmployee.address.addressLine,
-          City: this.passedEmployee.address.city,
-          Country: this.passedEmployee.address.country
+          AddressLine: this.passedEmployee.address?.addressLine ?? '',
+          City: this.passedEmployee.address?.city ?? '',
+          Country: this.passedEmployee.address?.country ?? ''
         },
-
-        RelationalStatusForm: [
-          { Name: this.passedEmployee.relationalStatusList[0].name, Status: this.passedEmployee.relationalStatusList[0].status}
-        ],
-
-        Allow: this.passedEmployee.allow,
+        Allow: this.passedEmployee.allow
       });
+
+    
+      this.RelationalStatus.clear();
+
+      // ✅ fixed loop over array
+      if (Array.isArray(this.passedEmployee.relationalStatusList)) {
+        this.passedEmployee.relationalStatusList.forEach((element: any) => {
+          this.RelationalStatus.push(
+            this.fb.group({
+              Name: [element.name],
+              Status: [element.status]
+            })
+          );
+        });
+      }
     }
-
   }
-
 
   addReligion() {
-    this.EmployeeForm.addControl('Religion', new FormControl(''))
+    if (!this.EmployeeForm.get('Religion')) {
+      this.EmployeeForm.addControl('Religion', new FormControl(''));
+    }
   }
+
   deleteReligion() {
     if (this.EmployeeForm.get('Religion')) {
       this.EmployeeForm.removeControl('Religion');
@@ -89,11 +120,11 @@ export class EmloyeeEditComponent implements OnInit {
   }
 
   get RelationalStatus() {
-    return this.EmployeeForm.get('RelationalStatusForm') as FormArray
+    return this.EmployeeForm.get('RelationalStatusForm') as FormArray;
   }
 
   AddRelationalStatus() {
-    return this.RelationalStatus.push(this.AddRelationalStatusControl())
+    return this.RelationalStatus.push(this.AddRelationalStatusControl());
   }
 
   AddRelationalStatusControl() {
@@ -102,20 +133,24 @@ export class EmloyeeEditComponent implements OnInit {
       Status: ['']
     });
   }
+
   RemoveRelationalStatus(ind: number) {
     this.RelationalStatus.removeAt(ind);
   }
 
   EditEmployee() {
-    console.log(this.passedEmployee.employeeId,this.EmployeeForm.getRawValue());
-    this.employeeService.EditEmployee(this.passedEmployee.employeeId,this.EmployeeForm.getRawValue()).pipe(
-      tap(() => {
-        this.employeeService.triggerRefresh();
-      }),
-      switchMap(() => this.router.navigateByUrl('/ds/employee'))
-    ).subscribe(() => {
-      this.EmployeeForm.reset();
-    })
-  }
+    console.log(this.passedEmployee.employeeId, this.EmployeeForm.getRawValue());
 
+    this.employeeService
+      .EditEmployee(this.passedEmployee.employeeId, this.EmployeeForm.getRawValue())
+      .pipe(
+        tap(() => {
+          this.employeeService.triggerRefresh();
+        }),
+        switchMap(() => this.router.navigateByUrl('/ds/employee'))
+      )
+      .subscribe(() => {
+        this.EmployeeForm.reset();
+      });
+  }
 }

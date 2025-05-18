@@ -1,17 +1,23 @@
 <div class="d-flex justify-content-center my-4">
-      <div class="d-flex align-items-center flex-wrap gap-3">
+  <div class="d-flex align-items-center flex-wrap gap-3">
 
-         <label class="form-label mb-0 fw-bold text-success">
-            Guest Name Filter:
-         </label>
-         <input type="text" class="form-control w-auto" [formControl]="BookingNamefilter" placeholder="Enter Guest Name">
-      </div>
+    <label class="form-label mb-0 fw-bold text-success">
+      Guest Name Filter:
+    </label>
+    <input type="text" class="form-control w-auto" [formControl]="BookingNamefilter" placeholder="Enter Guest Name">
+  </div>
 </div>
 
 <div class="container mt-4">
 
   <!-- Booking List Table -->
-  <h4 class="mb-3">Booking List</h4>
+  <div class="d-flex justify-content-center my-4">
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <div class="bg-primary text-white p-3 rounded">
+        <h4 class="mb-0">Booking History List</h4>
+      </div>
+    </div>
+  </div>
   <div class="table-responsive mb-5">
     <table class="table table-bordered table-striped table-hover align-middle">
       <thead class="table-primary">
@@ -26,6 +32,7 @@
           <th>Booking Status</th>
           <th>Booking Amount</th>
           <th>Booking Date</th>
+          <th>Edit</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -42,7 +49,13 @@
           <td>{{ booking.bookingAmount | currency }}</td>
           <td>{{ booking.bookingDate | date: 'shortDate' }}</td>
           <td>
-            <button class="btn btn-danger btn-sm" (click)="onDeleteBooking(booking.bookingID)" [disabled]="disableDelete">
+            <button class="btn btn-primary btn-sm" (click)="onEditBooking(booking)" [disabled]="disableDelete">
+              Edit
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="onDeleteBooking(booking.bookingID)"
+              [disabled]="disableDelete">
               Delete
             </button>
           </td>
@@ -52,7 +65,13 @@
   </div>
 
   <!-- Address Table -->
-  <h4 class="mb-3">Address List</h4>
+  <div class="d-flex justify-content-center my-4">
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <div class="bg-primary text-white p-3 rounded">
+        <h4 class="mb-0">Address List</h4>
+      </div>
+    </div>
+  </div>
   <div class="table-responsive mb-5">
     <table class="table table-bordered table-striped table-hover align-middle">
       <thead class="table-info">
@@ -81,7 +100,13 @@
   </div>
 
   <!-- Guest Form Table -->
-  <h4 class="mb-3">Guest Form List</h4>
+  <div class="d-flex justify-content-center my-4">
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <div class="bg-primary text-white p-3 rounded">
+        <h4 class="mb-0">Guest List</h4>
+      </div>
+    </div>
+  </div>
   <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover align-middle">
       <thead class="table-warning">
@@ -93,7 +118,8 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let booking of BookingFormList | searchBookList:BookingNamefilter.value?BookingNamefilter.value:''">
+        <ng-container
+          *ngFor="let booking of BookingFormList | searchBookList:BookingNamefilter.value?BookingNamefilter.value:''">
           <tr *ngFor="let guest of booking.guestForm">
             <td>{{ booking.bookingID }}</td>
             <td>{{ booking.guestName}}</td>

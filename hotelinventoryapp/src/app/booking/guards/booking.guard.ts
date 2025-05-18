@@ -4,8 +4,9 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { CanDeactivateFn } from '@angular/router';
 import { BookingAddComponent } from '../booking-add/booking-add.component';
+import { BookingEditComponent } from '../booking-edit/booking-edit.component';
 
-export const bookingGuard: CanDeactivateFn<BookingAddComponent> = (
+export const bookingGuard: CanDeactivateFn<BookingAddComponent|BookingEditComponent> = (
   component
 ): Observable<boolean> | boolean => {
   const snackBar = inject(MatSnackBar);

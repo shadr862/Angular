@@ -62,7 +62,10 @@ export class RoomsEditComponent implements OnInit {
       switchMap(() => this.router.navigateByUrl('/ds/rooms'))
     ).subscribe();
   }
-
+  close()
+  {
+    return this.router.navigate(['/ds/rooms']);
+  }
 }
 
 

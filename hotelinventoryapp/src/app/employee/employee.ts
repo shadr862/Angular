@@ -4,6 +4,7 @@ export interface Employee {
   Email: string;
   Phone: string;
   JoiningDate: string;
+  Role:string;
   Address: AddressE;
   RelationalStatusForm: RelationalStatusForm[];
   Allow: boolean;
@@ -26,6 +27,7 @@ export interface EmployeeDetailsGet {
   email: string;
   phone: string;
   joiningDate?: string | null; // ISO string or null
+  role:string,
   allow: boolean;
   religion?: string | null;
 

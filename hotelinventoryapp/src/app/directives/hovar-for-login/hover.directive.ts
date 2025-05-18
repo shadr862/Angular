@@ -3,14 +3,14 @@ import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@
 @Directive({
   selector: '[hinvHover]'
 })
-export class HoverDirective implements OnInit{
+export class HoverDirective implements OnInit {
   //if set the color here,then it is fixed.
   // if u change color in html file,it will not work.
   // it take it what u give as input.but if not set the color,
   // you can set in html file as deafult
-  
-  @Input() hinvHover:string='red';
-  constructor(private element:ElementRef,private renderer:Renderer2) { 
+
+  @Input() hinvHover: string = '';
+  constructor(private element: ElementRef, private renderer: Renderer2) {
     console.log(element.nativeElement);
   }
   ngOnInit(): void {
@@ -22,19 +22,19 @@ export class HoverDirective implements OnInit{
     )
   }
 
-  @HostListener('mouseenter') onMouseEnter(){
+  @HostListener('mouseenter') onMouseEnter() {
     this.renderer.setStyle(
       this.element.nativeElement,
       'backgroundColor',
-       'yellow'
+      'yellow'
     )
   }
 
-  @HostListener('mouseleave') onMouseLeave(){
+  @HostListener('mouseleave') onMouseLeave() {
     this.renderer.setStyle(
       this.element.nativeElement,
       'backgroundColor',
-       'white'
+      'white'
     )
   }
 

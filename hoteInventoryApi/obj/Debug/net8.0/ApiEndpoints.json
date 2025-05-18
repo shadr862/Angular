@@ -1,5 +1,37 @@
 [
   {
+    "ContainingType": "hoteInventoryApi.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "hoteInventoryApi.Model.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hoteInventoryApi.Controllers.AuthController",
+    "Method": "SignUp",
+    "RelativePath": "api/Auth/signup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "hoteInventoryApi.Model.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hoteInventoryApi.Controllers.BookingController",
     "Method": "SaveBookingDetails",
     "RelativePath": "api/Booking",
@@ -37,6 +69,22 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hoteInventoryApi.Controllers.BookingController",
+    "Method": "UpdateBookingDetails",
+    "RelativePath": "api/Booking",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "hoteInventoryApi.Model.BookingDetailsGet",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

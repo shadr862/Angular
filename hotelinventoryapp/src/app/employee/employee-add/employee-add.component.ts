@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Va
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
@@ -12,6 +12,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EmployeeService } from '../service/employee.service';
 import { switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { EmployeeCustomValidator } from '../custom-validator/employee-custom-validator';
+import { LoginService } from '../../Auth/login-service/login.service';
+
+
 
 
 
@@ -29,14 +33,24 @@ export class EmployeeAddComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
     private employeeService: EmployeeService,
-    private router:Router) { }
+    private router:Router,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.EmployeeForm = this.fb.group({
-      Name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      Email: new FormControl('', [Validators.required, Validators.email]),
+      Name:[
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          EmployeeCustomValidator.NameValidator,
+          EmployeeCustomValidator.SpeecialCharValidator('*')
+        ]
+      ],
+      Email: new FormControl('', [Validators.required, EmployeeCustomValidator.EmailValidator]),
       Phone: new FormControl('', [Validators.required]),
       JoiningDate: ['', [Validators.required]],
+      Role:new FormControl(''),
 
       AddressE: this.fb.group({
         AddressLine: [''],
@@ -57,7 +71,7 @@ export class EmployeeAddComponent implements OnInit {
       Phone: '01783882221',
       Religion: 'Islam',
       JoiningDate: new Date('2025-05-03'),
-
+      Role:'None',
       AddressE: {
         AddressLine: '98/34 Katlapur, Savar',
         City: 'Dhaka',
@@ -114,6 +128,7 @@ export class EmployeeAddComponent implements OnInit {
         Phone: '01783882221',
         Religion: 'Islam',
         JoiningDate: new Date('2025-05-03'),
+        Role:'None',
 
         AddressE: {
           AddressLine: '98/34 Katlapur, Savar',

@@ -1,7 +1,8 @@
 import { inject } from "@angular/core";
 import { CanLoadFn, Route, RouterStateSnapshot, UrlSegment } from "@angular/router";
-import { LoginService } from "../login/login-service/login.service";
+
 import { Router } from "@angular/router"; // ✅ correct import
+import { LoginService } from "../Auth/login-service/login.service";
 
 export const CanLoadGuard: CanLoadFn = (
   childRoute: Route,

@@ -19,6 +19,7 @@
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime JoiningDate { get; set; }
+        public string Role { get; set; }
         public AddressE AddressE { get; set; }
         public List<RelationalStatusForm> RelationalStatusForm { get; set; }
         public bool Allow { get; set; }

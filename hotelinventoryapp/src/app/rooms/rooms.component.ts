@@ -8,12 +8,14 @@ import { RoomsService } from './services/rooms.service';
 import { HttpEventType } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'hinv-rooms',
-  imports: [CommonModule, RoomsListComponent, HeaderComponent, ReactiveFormsModule],
+  standalone:true,
+  imports: [CommonModule, ReactiveFormsModule, RoomsListComponent, HeaderComponent,FormsModule,RouterModule],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
@@ -27,6 +29,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   selectedRoom!: RoomDetails;
   filterPrice = new FormControl(0);
   filterRoomtype = new FormControl('');
+  priceSortOrder: any;
 
   @ViewChild(HeaderComponent /*,{static:true}  default is false*/) headerComponent!: HeaderComponent;
   @ViewChildren(HeaderComponent) hearderChildrenComponet!: QueryList<HeaderComponent>; //static:false default. we cannot change it
@@ -45,6 +48,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   error$ = new Subject<string>();
   getError = this.error$.asObservable();
   room$!: Observable<RoomDetails[]>; //wiil use async pipe
+
 
   //this is dependency injection
   constructor(@SkipSelf() private services: RoomsService, private cdr: ChangeDetectorRef) {

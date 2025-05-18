@@ -30,8 +30,8 @@ namespace hoteInventoryApi.Controllers
                     {
                         // 1. Insert Employee
                         string insertEmpQuery = @"
-                        INSERT INTO Employee (Name, Email, Phone, JoiningDate, Allow, Religion)
-                        VALUES (@Name, @Email, @Phone, @JoiningDate, @Allow, @Religion);
+                        INSERT INTO Employee (Name, Email, Phone, JoiningDate, Allow, Religion,Role)
+                        VALUES (@Name, @Email, @Phone, @JoiningDate, @Allow, @Religion,@Role);
                         SELECT SCOPE_IDENTITY();";
 
                         SqlCommand cmdEmp = new SqlCommand(insertEmpQuery, conn, transaction);
@@ -39,6 +39,7 @@ namespace hoteInventoryApi.Controllers
                         cmdEmp.Parameters.AddWithValue("@Email", employee.Email);
                         cmdEmp.Parameters.AddWithValue("@Phone", employee.Phone);
                         cmdEmp.Parameters.AddWithValue("@JoiningDate", employee.JoiningDate);
+                        cmdEmp.Parameters.AddWithValue("@Role", employee.Role);
                         cmdEmp.Parameters.AddWithValue("@Allow", employee.Allow);
                         cmdEmp.Parameters.AddWithValue("@Religion", string.IsNullOrEmpty(employee.Religion) ? (object)DBNull.Value : employee.Religion);
 
@@ -115,6 +116,7 @@ namespace hoteInventoryApi.Controllers
                             Email = reader["Email"].ToString(),
                             Phone = reader["Phone"].ToString(),
                             JoiningDate = reader["JoiningDate"] as DateTime?,
+                            Role = reader["Role"].ToString(),
                             Allow = Convert.ToBoolean(reader["Allow"]),
                             Religion = reader["Religion"] == DBNull.Value ? null : reader["Religion"].ToString(),
 
@@ -207,7 +209,7 @@ namespace hoteInventoryApi.Controllers
                         string updateEmpQuery = @"
                 UPDATE Employee 
                 SET Name = @Name, Email = @Email, Phone = @Phone, 
-                    JoiningDate = @JoiningDate, Allow = @Allow, Religion = @Religion
+                    JoiningDate = @JoiningDate, Allow = @Allow, Religion = @Religion,Role=@Role
                 WHERE Id = @EmployeeId;";
 
                         SqlCommand cmdEmp = new SqlCommand(updateEmpQuery, conn, transaction);
@@ -216,6 +218,7 @@ namespace hoteInventoryApi.Controllers
                         cmdEmp.Parameters.AddWithValue("@Email", employee.Email);
                         cmdEmp.Parameters.AddWithValue("@Phone", employee.Phone);
                         cmdEmp.Parameters.AddWithValue("@JoiningDate", employee.JoiningDate);
+                        cmdEmp.Parameters.AddWithValue("@Role", employee.Role);
                         cmdEmp.Parameters.AddWithValue("@Allow", employee.Allow);
                         cmdEmp.Parameters.AddWithValue("@Religion", string.IsNullOrEmpty(employee.Religion) ? (object)DBNull.Value : employee.Religion);
                         cmdEmp.ExecuteNonQuery();

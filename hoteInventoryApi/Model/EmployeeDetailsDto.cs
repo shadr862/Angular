@@ -9,6 +9,7 @@
             public string Email { get; set; }
             public string Phone { get; set; }
             public DateTime? JoiningDate { get; set; }
+            public string Role { get; set; }
             public bool Allow { get; set; }
             public string ?Religion { get; set; }
 

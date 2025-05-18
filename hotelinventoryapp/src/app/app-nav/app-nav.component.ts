@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterModule,} from '@angular/router';
 import { Router } from '@angular/router';
-import { LoginService } from '../login/login-service/login.service';
+import { LoginService } from '../Auth/login-service/login.service';
+
 @Component({
   selector: 'hinv-app-nav',
   templateUrl: './app-nav.component.html',

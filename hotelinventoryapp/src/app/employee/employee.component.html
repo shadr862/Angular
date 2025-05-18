@@ -2,7 +2,24 @@
     <h2>Html body of  Employee</h2>
     <p>The Employee name is:{{EmployeeName}}</p>
 </div> -->
- <button class="btn btn-primary" routerLink="add">Add Employee</button>
+<div class="d-flex justify-content-center my-4">
+  <div class="d-flex align-items-center flex-wrap gap-3">
+
+    <label class="form-label mb-0 fw-bold text-success">
+      Employee Name Filter:
+    </label>
+    <input type="text" class="form-control w-auto" [formControl]="employeeNameFilter" placeholder="Enter Employee Name">
+    <label class="form-label mb-0 fw-bold text-success">
+      Employee Role Filter:
+    </label>
+    <input type="text" class="form-control w-auto" [formControl]="employeeRoleFilter" placeholder="Enter Employee Role">
+  </div>
+</div>
+
+<button class="btn btn-primary" routerLink="add">Add Employee</button>
 <router-outlet></router-outlet>
 
-<hinv-employee-list [employeeList]="this.employeeList" [disableDelete]="this.disableDelete" (deletedId)="DeleteEmployee($event)"></hinv-employee-list>
+<hinv-employee-list [employeeList]="this.employeeList" 
+[disableDelete]="this.disableDelete" (deletedId)="DeleteEmployee($event)"
+[name]="employeeNameFilter.value?employeeNameFilter.value:'' "
+[Role]="employeeRoleFilter.value?employeeRoleFilter.value:'' "></hinv-employee-list>

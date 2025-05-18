@@ -4,9 +4,20 @@
 
 .center-container {
   display: flex;
-  justify-content: center;   /* Center horizontally */
-  align-items: center;       /* Center vertically */           
-  width: 100%;
-  background-color: #f8f9fa; /* Optional */
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.colorful-title {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(37, 117, 252, 0.6);
+  text-align: center;
+  max-width: 80%;
 }
 

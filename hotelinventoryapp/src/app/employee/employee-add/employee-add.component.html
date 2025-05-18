@@ -15,16 +15,42 @@
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput formControlName="Name" placeholder="Name">
+          <mat-error *ngIf="EmployeeForm.get('Name')?.hasError('invalidName')">
+            you have provide a invalid name!
+          </mat-error>
+
+          <mat-error *ngIf="EmployeeForm.get('Name')?.hasError('invalidCharecter')">
+            you have provide a invalid Special Charecter!
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="Email" placeholder="Email">
+          <mat-error *ngIf="EmployeeForm.get('Email')?.hasError('invalidEmail')">
+            you have provide a invalid Email!
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Phone Number</mat-label>
           <input matInput formControlName="Phone" placeholder="Phone Number">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Select the Role</mat-label>
+          <select matNativeControl required formControlName="Role">
+            <option label="--select something --"></option>
+            <option value="Admin">Admin</option>
+            <option value="Manager">Manager</option>
+            <option value="General">General</option>
+          </select>
+          
+          <mat-error *ngIf="EmployeeForm.get('Role')?.hasError('required')">
+            This field is required
+          </mat-error>
+
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="EmployeeForm.get('Religion')">
@@ -65,7 +91,8 @@
       </mat-expansion-panel>
 
       <div class="form-actions">
-        <button mat-raised-button color="accent" class="custom-action-button" type="button" (click)="AddRelationalStatus()">
+        <button mat-raised-button color="accent" class="custom-action-button" type="button"
+          (click)="AddRelationalStatus()">
           Add Relational Status
         </button>
       </div>
@@ -89,7 +116,8 @@
               <input matInput formControlName="Status" placeholder="Status">
             </mat-form-field>
 
-            <button mat-stroked-button color="warn" class="custom-action-button" type="button" (click)="RemoveRelationalStatus(i)">
+            <button mat-stroked-button color="warn" class="custom-action-button" type="button"
+              (click)="RemoveRelationalStatus(i)">
               Remove
             </button>
           </div>
@@ -101,7 +129,8 @@
       </div>
 
       <div class="form-actions">
-        <button [disabled]="EmployeeForm.invalid" mat-flat-button color="primary" class="custom-submit-button" type="submit">
+        <button [disabled]="EmployeeForm.invalid" mat-flat-button color="primary" class="custom-submit-button"
+          type="submit">
           Submit
         </button>
       </div>

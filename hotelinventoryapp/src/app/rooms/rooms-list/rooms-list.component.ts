@@ -5,17 +5,19 @@ import { RoomDetails } from '../rooms';
 import { FormsModule } from '@angular/forms';
 import { RoomsService } from '../services/rooms.service';
 import { RouterModule } from '@angular/router';
-import { FilterPipe } from "../custom_filter_pipe/filter.pipe";
-import { SearchPipe } from "../custom_filter_pipe/search.pipe";
+import { FilterPipe } from "../custom_pipe/filter.pipe";
+import { SearchPipe } from "../custom_pipe/search.pipe";
 import { Router } from '@angular/router';
 import { LoggerService } from '../../logger.service';
-import { LoginService } from '../../login/login-service/login.service';
+import { LoginService } from '../../Auth/login-service/login.service';
+import { SortPipe } from "../custom_pipe/sort.pipe";
+
 
 
 @Component({
   selector: 'hinv-rooms-list',
-  imports: [CommonModule, FormsModule, RouterModule, FilterPipe, SearchPipe],
   standalone:true,
+  imports: [CommonModule, FormsModule, RouterModule, FilterPipe, SearchPipe, SortPipe],
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,6 +27,7 @@ export class RoomsListComponent implements OnInit,OnChanges,OnDestroy{
   @Input() Title:string='';
   @Input() Price:number=0;
   @Input() RoomType:string='';
+  @Input() priceSortOrder:any;
   @Output() SelectedRoom_rm_list=new EventEmitter<RoomDetails>();
   @Output() DetetedID=new EventEmitter<RoomDetails>();
  

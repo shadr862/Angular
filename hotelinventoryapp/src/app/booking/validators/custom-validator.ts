@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormGroup} from '@angular/forms';
 
 export class CustomValidator {
     static ValidateName(control: AbstractControl) {

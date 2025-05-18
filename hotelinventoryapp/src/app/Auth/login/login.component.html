@@ -1,6 +1,9 @@
 <div class="container min-vh-100 d-flex justify-content-center align-items-center bg-light">
   <div class="card shadow-lg rounded-4 border-0" style="width: 100%; max-width: 420px;">
-    
+    <div *ngIf="message" class="alert alert-success text-center mt-3 mb-0" role="alert">
+      {{ message}}
+    </div>
+
     <!-- Header / Caption -->
     <div class="card-header bg-white border-0 text-center pt-4 pb-2">
       <h3 class="fw-semibold text-primary">Login</h3>
@@ -12,34 +15,16 @@
       <form>
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          <input
-            hinvEmailvalidator
-            hinvHover="pink"
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="name@example.com"
-            [(ngModel)]="email"
-            required
-            #emailControl="ngModel"
-          />
+          <input hinvEmailvalidator hinvHover="pink" type="email" id="email" name="email" class="form-control"
+            placeholder="name@example.com" [(ngModel)]="Model.email" required #emailControl="ngModel" />
           <div *ngIf="emailControl.dirty && emailControl.errors?.['invalidEmail']">
-                You have given invalid Email!
+            You have given invalid Email!
           </div>
         </div>
         <div class="mb-4">
           <label for="password" class="form-label">Password</label>
-          <input
-            hinvHover="pink"
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="••••••••"
-            [(ngModel)]="password"
-            required
-          />
+          <input hinvHover="pink" type="password" id="password" name="password" class="form-control"
+            placeholder="••••••••" [(ngModel)]="Model.password" required />
         </div>
         <div class="d-grid">
           <button type="submit" class="btn btn-primary btn-lg" (click)="Login()">Login</button>
@@ -49,7 +34,12 @@
 
     <!-- Optional Footer -->
     <div class="card-footer text-center bg-white border-0 pb-4">
-      <small class="text-muted">Don't have an account? <a href="#" class="text-decoration-none">Sign up</a></small>
+      <small class="text-muted">
+        Don't have an account?
+        <a routerLink="/signup" class="text-decoration-none">Sign up</a>
+      </small>
     </div>
+
+
   </div>
 </div>

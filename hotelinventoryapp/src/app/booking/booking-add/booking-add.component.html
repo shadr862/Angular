@@ -159,7 +159,7 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header class="address-panel-header">
                         <mat-panel-title>
-                            <mat-icon class="address-icon">home</mat-icon>
+                            <mat-icon class="address-icon">group</mat-icon>
                             Add Guest
                         </mat-panel-title>
                     </mat-expansion-panel-header>
@@ -200,11 +200,12 @@
             </div>
 
             <div class="form-actions">
-                <button [disabled]="BookingForm.invalid" mat-raised-button color="accent" class="custom-submit-button"
-                    type="submit">
+                <button [disabled]="BookingForm.invalid" class="custom-submit-button"
+                    [class.blurred-button]="BookingForm.invalid" mat-raised-button color="accent" type="submit">
                     <span class="button-text">Submit Booking</span>
                 </button>
             </div>
+
         </form>
     </mat-card-content>
 </mat-card>

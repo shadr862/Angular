@@ -1,6 +1,6 @@
 import { CanActivateFn, CanLoadFn, ActivatedRouteSnapshot, RouterStateSnapshot, Route, UrlSegment, Router } from "@angular/router";
-import { LoginService } from "../login/login-service/login.service";
 import { inject } from "@angular/core";
+import { LoginService } from "../Auth/login-service/login.service";
 
 export const canActivateLoginGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,

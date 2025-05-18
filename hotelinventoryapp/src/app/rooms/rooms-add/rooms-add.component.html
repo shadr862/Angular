@@ -14,8 +14,11 @@
           This is not proper email !
  </div> -->
 
+<div class="container mt-5 position-relative">
 
-<div class="container mt-5">
+  <!-- Close Button (top-right corner) -->
+  <button class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" (click)="close()">×</button>
+
   <form #roomsForm="ngForm" (ngSubmit)="AddRoom(roomsForm)">
     <h3 class="text-center mb-3">Add Room</h3>
 

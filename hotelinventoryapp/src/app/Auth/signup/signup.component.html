@@ -1,0 +1,73 @@
+<div class="container min-vh-100 d-flex justify-content-center align-items-center bg-light">
+  <div class="card shadow-lg rounded-4 border-0" style="width: 100%; max-width: 480px;">
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="alert alert-success text-center mt-3 mb-0" role="alert">
+      {{ successMessage }}
+    </div>
+    <!-- Header -->
+    <div class="card-header bg-white border-0 text-center pt-4 pb-2">
+      <h3 class="fw-semibold text-success">Sign Up</h3>
+      <p class="text-muted small mb-0">Create a new account to get started</p>
+    </div>
+
+    <!-- Form Body -->
+    <div class="card-body px-4 py-3">
+      <form #signupForm="ngForm" (ngSubmit)="SignUp()">
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input hinvEmailvalidator hinvHover="pink" type="email" id="email" name="email" class="form-control" placeholder="name@example.com"
+            [(ngModel)]="Model.email" required #emailControl="ngModel" email />
+          <div *ngIf="emailControl.dirty && emailControl.errors?.['invalidEmail']" class="text-danger small">
+            Please enter a valid email.
+          </div>
+          <div *ngIf="emailControl.dirty && emailControl.errors?.['required']" class="text-danger small">
+            Email is required!
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input hinvHover="pink" type="password" id="password" name="password" class="form-control" placeholder="••••••••"
+            [(ngModel)]="Model.password" required />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input hinvHover="pink" type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="••••••••"
+            [(ngModel)]="Model.confirmPassword" required />
+          <div *ngIf="Model.confirmPassword && Model.confirmPassword !== Model.password" class="text-danger small">
+            Passwords do not match!
+          </div>
+        </div>
+
+        <!-- Role -->
+        <div class="mb-4">
+          <label for="role" class="form-label">Role</label>
+          <select   id="role" name="role" class="form-select" [(ngModel)]="Model.role" required>
+            <option hinvHover="pink" value="" disabled selected>Select role</option>
+            <option hinvHover="pink" value="Admin">Admin</option>
+            <option hinvHover="pink" value="Manager">Manager</option>
+            <option hinvHover="pink" value="Employee">Employee</option>
+            <option hinvHover="pink" value="Guest">Guest</option>
+          </select>
+        </div>
+
+        <!-- Submit -->
+        <div class="d-grid">
+          <button [disabled]="signupForm.invalid" type="submit" class="btn btn-success btn-lg">Sign Up</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer text-center bg-white border-0 pb-4">
+      <small class="text-muted">Already have an account?
+        <a routerLink="/login" class="text-decoration-none">Login</a>
+      </small>
+    </div>
+  </div>
+</div>
