@@ -1,3 +1,11 @@
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.csproj.AssemblyReference.cache
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.GeneratedMSBuildEditorConfig.editorconfig
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.AssemblyInfoInputs.cache
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.AssemblyInfo.cs
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.csproj.CoreCompileInputs.cache
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.MvcApplicationPartsAssemblyInfo.cs
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.MvcApplicationPartsAssemblyInfo.cache
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.sourcelink.json
 F:\Angular\hoteInventoryApi\bin\Debug\net8.0\appsettings.Development.json
 F:\Angular\hoteInventoryApi\bin\Debug\net8.0\appsettings.json
 F:\Angular\hoteInventoryApi\bin\Debug\net8.0\hoteInventoryApi.staticwebassets.endpoints.json
@@ -16,14 +24,6 @@ F:\Angular\hoteInventoryApi\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
 F:\Angular\hoteInventoryApi\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
 F:\Angular\hoteInventoryApi\bin\Debug\net8.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
 F:\Angular\hoteInventoryApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.csproj.AssemblyReference.cache
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.GeneratedMSBuildEditorConfig.editorconfig
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.AssemblyInfoInputs.cache
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.AssemblyInfo.cs
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.csproj.CoreCompileInputs.cache
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.MvcApplicationPartsAssemblyInfo.cs
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.MvcApplicationPartsAssemblyInfo.cache
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.sourcelink.json
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\scopedcss\bundle\hoteInventoryApi.styles.css
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.build.json
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.development.json

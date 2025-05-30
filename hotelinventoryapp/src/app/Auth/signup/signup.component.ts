@@ -42,6 +42,8 @@ export class SignupComponent {
         this.signupForm.resetForm();
       },
       error: (err) => {
+         this.successMessage = err.error?.message || 'User already exists';
+
         console.error('Signup failed:', err.message);
       }
     })

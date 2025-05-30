@@ -8,7 +8,7 @@ import { BookingEditComponent } from "./booking-edit/booking-edit.component";
 
 
 export const BookingRoutes:Routes=[
-     {path:'see',component:BookingListComponent},
+     {path:'',component:BookingListComponent},
      {path:'edit',component:BookingEditComponent,canDeactivate:[bookingGuard]},
      {path:':roomid',component:BookingAddComponent,canDeactivate:[bookingGuard]},//keep it always in the end
      

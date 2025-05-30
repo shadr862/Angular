@@ -1,7 +1,14 @@
 {
-    "/api": {
-      "target": "https://localhost:44348", 
-      "secure": false
+  "/api": {
+    "target": "https://localhost:44348",
+    "secure": false
+  },
+  "/products": {
+    "target": "https://dummyjson.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/products": ""
     }
+  }
 }
-  

@@ -45,7 +45,7 @@ export class RoomsListComponent implements OnInit,OnChanges,OnDestroy{
     }
   }
   ngOnInit(): void { 
-    if(this.loginService.isloggedinAdmin)
+    if(this.loginService.isloggedinAdmin||this.loginService.isloggedinManager)
     {
        this.disabledDelete=false;
     }

@@ -1,0 +1,6 @@
+@HocGadgetShopApi_HostAddress = http://localhost:5166
+
+GET {{HocGadgetShopApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

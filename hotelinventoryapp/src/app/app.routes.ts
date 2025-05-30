@@ -34,6 +34,11 @@ export const routes: Routes = [
         import('./booking/booking-routes').then((m) => m.BookingRoutes),
         canLoad: [CanLoadGuard]
       },
+      {
+        path:'products',
+        loadChildren:()=>import('./product/product-route').then(m=>m.productsRoute),
+        canLoad:[CanLoadGuard]
+      },
       { path: '', redirectTo: 'rooms', pathMatch: 'full' },
     ],
   },

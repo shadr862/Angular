@@ -51,7 +51,7 @@ export class EmloyeeEditComponent implements OnInit {
       Email: new FormControl('', [Validators.required, EmployeeCustomValidator.EmailValidator]),
       Phone: new FormControl('', [Validators.required]),
       JoiningDate: ['', [Validators.required]],
-      Role:[{value:'',disabled:true},[Validators.required]],
+      Role:['',[Validators.required]],
 
       AddressE: this.fb.group({
         AddressLine: [''],
