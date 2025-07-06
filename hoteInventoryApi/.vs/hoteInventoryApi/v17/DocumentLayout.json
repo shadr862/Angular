@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "F:\\Angular\\hoteInventoryApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|f:\\angular\\hoteinventoryapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|f:\\angular\\hoteinventoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2A50851-90D2-4623-BA2D-74AE782E896F}|hoteInventoryApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "F:\\Angular\\hoteInventoryApi\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "F:\\Angular\\hoteInventoryApi\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAADwvw4AAAAIAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Angular\\hoteInventoryApi\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "F:\\Angular\\hoteInventoryApi\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T15:23:05.074Z",
+              "WhenOpened": "2025-06-26T06:12:52.852Z",
               "EditorCaption": ""
             }
           ]

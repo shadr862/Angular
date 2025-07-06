@@ -18,7 +18,11 @@ bootstrap install:
 npm install bootstrap
 ng bootstrap->ng add @ng-bootstrap/ng-bootstrap
 angular json->style->"node_modules/bootstrap/dist/css/bootstrap-grid.min.css"
+angular json->script->"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 style->@import '~bootstrap/dist/css/bootstrap-grid.min.css';
+
+adding angular material:
+ng add @angular/material
 
 
 creating component:
@@ -29,10 +33,6 @@ ng g s rooms
 
 creating interceptor:
 ng g interceptor name like request
-
-
-adding angular material:
-ng add @angular/material
 
 
 add navigation:
