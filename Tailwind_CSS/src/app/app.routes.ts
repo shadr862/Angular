@@ -7,6 +7,10 @@ import { BorderRadiusComponent } from './border-radius/border-radius.component';
 import { GradiantColorAndHoverEffectComponent } from './gradiant-color-and-hover-effect/gradiant-color-and-hover-effect.component';
 import { FelxBoxComponent } from './felx-box/felx-box.component';
 import { GridComponent } from './grid/grid.component';
+import { ResponsiveComponent } from './responsive/responsive.component';
+import { AnimationAndTransitionComponent } from './animation-and-transition/animation-and-transition.component';
+import { Project1Component } from './project-1/project-1.component';
+import { ProjectFormComponent } from './project-form/project-form.component';
 
 
 export const routes: Routes = [
@@ -17,6 +21,10 @@ export const routes: Routes = [
     {path:'gradiant_color_and_hover_effect',component:GradiantColorAndHoverEffectComponent},
     {path:'flexbox',component:FelxBoxComponent},
     {path:'grid',component:GridComponent},
+    {path:'responsive',component:ResponsiveComponent},
+    {path:'animation_transition',component:AnimationAndTransitionComponent},
+    {path:'project1',component:Project1Component},
+    {path:'project2',component:ProjectFormComponent},
     {path:'dashboard',component:DashboardComponent},
     {path:'',redirectTo:'dashboard',pathMatch:'full'},
 ];
