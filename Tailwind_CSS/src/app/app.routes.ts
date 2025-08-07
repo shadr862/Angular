@@ -11,6 +11,7 @@ import { ResponsiveComponent } from './responsive/responsive.component';
 import { AnimationAndTransitionComponent } from './animation-and-transition/animation-and-transition.component';
 import { Project1Component } from './project-1/project-1.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { Project3Component } from './project3/project3.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {path:'animation_transition',component:AnimationAndTransitionComponent},
     {path:'project1',component:Project1Component},
     {path:'project2',component:ProjectFormComponent},
+    {path:'project3',component:Project3Component},
     {path:'dashboard',component:DashboardComponent},
     {path:'',redirectTo:'dashboard',pathMatch:'full'},
 ];
