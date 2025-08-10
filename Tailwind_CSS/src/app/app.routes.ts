@@ -12,6 +12,8 @@ import { AnimationAndTransitionComponent } from './animation-and-transition/anim
 import { Project1Component } from './project-1/project-1.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
 import { Project3Component } from './project3/project3.component';
+import { Project4Component } from './project4/project4.component';
+import { Project5Component } from './project5/project5.component';
 
 
 export const routes: Routes = [
@@ -27,6 +29,8 @@ export const routes: Routes = [
     {path:'project1',component:Project1Component},
     {path:'project2',component:ProjectFormComponent},
     {path:'project3',component:Project3Component},
+    {path:'project4',component:Project4Component},
+    {path:'project5',component:Project5Component},
     {path:'dashboard',component:DashboardComponent},
     {path:'',redirectTo:'dashboard',pathMatch:'full'},
 ];

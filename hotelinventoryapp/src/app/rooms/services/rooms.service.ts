@@ -11,37 +11,37 @@ import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
 export class RoomsService {
   getRoom$!: Observable<RoomDetails[]>;
 
-  header=new HttpHeaders({
+  header = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer your-token-here'
   })
 
-  
 
-  
+
+
   constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig, private httpClient: HttpClient) {
     //console.log('Room Service is created');
     console.log(this.config.apiEndpoint);  // This should now log the apiEndpoint value from the environment
-    this.getRoom$ = this.httpClient.get<RoomDetails[]>('/api/Rooms',{headers:this.header}).pipe(
-      shareReplay(1) 
+    this.getRoom$ = this.httpClient.get<RoomDetails[]>('/api/Rooms', { headers: this.header }).pipe(
+      shareReplay(1)
     );
   }
-//refeesh the page
-private refreshNeeded$ = new BehaviorSubject<void>(undefined);
+  //refeesh the page
+  private refreshNeeded$ = new BehaviorSubject<void>(undefined);
 
-get refreshNeeded() {
-  return this.refreshNeeded$.asObservable();
-}
+  get refreshNeeded() {
+    return this.refreshNeeded$.asObservable();
+  }
 
-triggerRefresh() {
-  this.refreshNeeded$.next();
-}
-  
+  triggerRefresh() {
+    this.refreshNeeded$.next();
+  }
+
 
 
   getRoomList() {
-    
-    return this.httpClient.get<RoomDetails[]>('/api/Rooms',{headers:this.header});  // Adjust API endpoint if needed
+
+    return this.httpClient.get<RoomDetails[]>('/api/Rooms', { headers: this.header });  // Adjust API endpoint if needed
   }
 
   addRoom(room: RoomDetails) {

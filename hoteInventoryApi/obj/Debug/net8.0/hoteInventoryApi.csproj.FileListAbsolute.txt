@@ -28,12 +28,6 @@ F:\Angular\hoteInventoryApi\obj\Debug\net8.0\scopedcss\bundle\hoteInventoryApi.s
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.build.json
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.development.json
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets\msbuild.hoteInventoryApi.Microsoft.AspNetCore.StaticWebAssets.props
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets\msbuild.hoteInventoryApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets\msbuild.build.hoteInventoryApi.props
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.hoteInventoryApi.props
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.hoteInventoryApi.props
-F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.pack.json
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInve.4231A518.Up2Date
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.dll
@@ -41,3 +35,8 @@ F:\Angular\hoteInventoryApi\obj\Debug\net8.0\refint\hoteInventoryApi.dll
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.pdb
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\hoteInventoryApi.genruntimeconfig.cache
 F:\Angular\hoteInventoryApi\obj\Debug\net8.0\ref\hoteInventoryApi.dll
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\rpswa.dswa.cache.json
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\rjimswa.dswa.cache.json
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+F:\Angular\hoteInventoryApi\obj\Debug\net8.0\staticwebassets.build.json.cache
