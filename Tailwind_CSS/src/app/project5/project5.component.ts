@@ -8,9 +8,5 @@ import { Component } from '@angular/core';
 })
 export class Project5Component {
 
-  abc()
-  {
-    alert("ok")
-  }
-
+  
 }
