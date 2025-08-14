@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup} from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 export class CustomValidator {
     static ValidateName(control: AbstractControl) {
@@ -21,36 +21,38 @@ export class CustomValidator {
 
         }
     }
-static validateDate(control: FormGroup) {
-    const checkinControl = control.get('checkinDate');
-    const checkoutControl = control.get('checkoutDate');
+    static validateDate(control: FormGroup) {
+        const checkinControl = control.get('checkinDate');
+        const checkoutControl = control.get('checkoutDate');
 
-    const checkinDate: any = new Date(checkinControl?.value);
-    const checkoutDate: any = new Date(checkoutControl?.value);
+        const checkinDate: any = new Date(checkinControl?.value);
+        const checkoutDate: any = new Date(checkoutControl?.value);
 
-    // If dates are not valid, don't proceed with validation
-    if (isNaN(checkinDate) || isNaN(checkoutDate)) {
+        // If dates are not valid, don't proceed with validation
+        if (isNaN(checkinDate) || isNaN(checkoutDate)) {
+            return null;
+        }
+
+        const diffTime = checkoutDate - checkinDate;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        console.log(diffDays);
+        console.log(diffTime);
+
+        if (diffDays <= 0) {
+            checkoutControl?.setErrors({ invalidDate: true });
+            return { invalidDate: true };
+        }
+        else 
+        {
+            // Clear error if previously set and now valid
+            if (checkoutControl?.hasError('invalidDate')) {
+                checkoutControl.setErrors(null);
+            }
+        }
+
         return null;
     }
-
-    const diffTime = checkoutDate - checkinDate;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    console.log(diffDays);
-    console.log(diffTime);
-
-    if (diffDays <= 0) {
-        checkoutControl?.setErrors({ invalidDate: true });
-        return { invalidDate: true };
-    } else {
-        // Clear error if previously set and now valid
-        if (checkoutControl?.hasError('invalidDate')) {
-            checkoutControl.setErrors(null);
-        }
-    }
-
-    return null;
-}
 
 
 }

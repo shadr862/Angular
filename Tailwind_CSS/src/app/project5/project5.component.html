@@ -1,122 +1,242 @@
-<!--Navigation Start-->
-<nav class="max-w-5xl mx-auto flex flex-col md:flex-row gap-4 items-center">
-    <img src="assets/images/codeabc_circle.png" alt="Code_ABC" class="w-[80px] h-[80px]">
-    <div class="flex gap-4 flex-col md:flex-row justify-between items-center w-full">
-        <div class="flex gap-6 flex-col md:flex-row items-center">
-            <p>Home</p>
-            <p>Channel</p>
-            <p>Support</p>
-            <p>About</p>
-            <img src="assets/images/search.png" alt="search">
-            <input type="text" class="py-2 px-16 border-2 border-gray-300 rounded-md">
-        </div>
-        <div class="flex gap-4 flex-col md:flex-row items-center">
-            <div class="flex gap-2 items-center">
-                <img src="assets/images/lock.png" alt="lock">
-                <span>Login</span>
-            </div>
-            <button class="bg-primary px-8 py-3 rounded-md text-white">
-                Donate Now
-            </button>
-        </div>
+<nav class="max-w-5xl mx-auto mt-6 px-4">
+
+  <!-- Top bar: logo + hamburger only on mobile -->
+  <div class="flex justify-between items-center md:hidden">
+    <img src="assets/images/codeabc_circle.png" alt="Code_ABC" class="w-[60px] h-[60px]">
+    <button (click)="isMenuOpen = !isMenuOpen" class="focus:outline-none">
+      <div class="space-y-1">
+        <span class="block w-6 h-0.5 bg-gray-700"></span>
+        <span class="block w-6 h-0.5 bg-gray-700"></span>
+        <span class="block w-6 h-0.5 bg-gray-700"></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Desktop horizontal navbar -->
+  <div class="hidden md:flex md:justify-between md:items-center gap-4">
+    <div class="flex gap-6 items-center">
+      <p>Home</p>
+      <p>Channel</p>
+      <p>Support</p>
+      <p>About</p>
+      <img src="assets/images/search.png" alt="search">
+      <input type="text" class="py-2 px-16 border-2 border-gray-300 rounded-md">
     </div>
+    <div class="flex gap-4 items-center">
+      <div class="flex gap-2 items-center">
+        <img src="assets/images/lock.png" alt="lock">
+        <span>Login</span>
+      </div>
+      <button class="bg-primary px-8 py-3 rounded-md text-white">Donate Now</button>
+    </div>
+  </div>
+
+  <!-- Sidebar for mobile -->
+  <div
+    class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 md:hidden z-50"
+    [ngClass]="{'-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen}">
+
+    <!-- Close button -->
+    <div class="flex justify-between items-center p-4 border-b">
+      <img src="assets/images/codeabc_circle.png" alt="Code_ABC" class="w-[60px] h-[60px]">
+      <button (click)="isMenuOpen = false" class="focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Nav links -->
+    <div class="flex flex-col p-4 gap-4">
+      <p class="cursor-pointer hover:text-primary">Home</p>
+      <p class="cursor-pointer hover:text-primary">Channel</p>
+      <p class="cursor-pointer hover:text-primary">Support</p>
+      <p class="cursor-pointer hover:text-primary">About</p>
+      <div class="flex flex-col gap-2">
+        <img src="assets/images/search.png" alt="search" class="w-5 h-5">
+        <input type="text" placeholder="Search" class="flex-grow py-2 px-3 border-2 border-gray-300 rounded-md">
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="assets/images/lock.png" alt="lock" class="w-5 h-5">
+        <span>Login</span>
+      </div>
+      <button class="bg-primary px-4 py-2 rounded-md text-white  w-full">Donate Now</button>
+    </div>
+  </div>
+
+
+
 </nav>
-<!--Navigation End-->
+
 
 <!--Hero Section Start-->
 <section class="max-w-5xl mx-auto px-16 py-20 flex gap-6 flex-col md:flex-row justify-between items-center">
-    <div>
-        <h1 class="text-4xl font-bold pb-6"><span class="txt-primary">Tailwind CSS</span> Course Learner</h1>
-        <h2 class="text-6xl font-bold txt-secondary pb-6">Riaz Mehadi</h2>
-        <p class="font-bold">Linkdin,Riaz Mehadi</p>
-        <div class="flex gap-6 items-center pt-8">
-            <button class="bg-Secondary px-6 py-2 rounded-md text-white font-bold">Get Token</button>
-            <div class="flex gap-2 items-center">
-                <p>White paper</p>
-                <img src="assets/images/play.png" alt="payer">
-            </div>
-        </div>
+  <div>
+    <h1 class="text-4xl font-bold pb-6"><span class="txt-primary">Tailwind CSS</span> Course Learner</h1>
+    <h2 class="text-6xl font-bold txt-secondary pb-6">Riaz Mehadi</h2>
+    <p class="font-bold">Linkdin,Riaz Mehadi</p>
+    <div class="flex gap-6 items-center pt-8">
+      <button class="bg-Secondary px-6 py-2 rounded-md text-white font-bold">Get Token</button>
+      <div class="flex gap-2 items-center">
+        <p>White paper</p>
+        <img src="assets/images/play.png" alt="payer">
+      </div>
     </div>
+  </div>
 
-    <div>
-        <img src="assets/images/my-pic.jpg" alt="my-pic" class="w-[300px] h-[300px] rounded-full">
-    </div>
+  <div>
+    <img src="assets/images/my-pic.jpg" alt="my-pic" class="w-[300px] h-[300px] rounded-full">
+  </div>
 </section>
 <!--Hero Section End-->
 
 <!--Service Section Start-->
-
 <section class="bg-[#EEF5FF]  p-20">
-    <div class="text-center ">
-        <p class="txt-primary font-bold">Service we work for</p>
-        <h1 class="pb-10">What care we do for career</h1>
-        <img src="assets/images/down.png" alt="down" class="mx-auto">
+  <div class="text-center ">
+    <p class="txt-primary font-bold">Service we work for</p>
+    <h1 class="pb-10">What care we do for career</h1>
+    <img src="assets/images/down.png" alt="down" class="mx-auto">
+  </div>
+  <div class="max-w-5xl mx-auto grid gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 bg-white p-20">
+
+    <div class="text-center flex flex-col gap-4">
+      <img src="assets/images/career1.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
+      <h1 class="text-xl font-bold">Coding</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <button class="txt-primary font-bold">
+        Learn more
+        <span>></span>
+      </button>
     </div>
-    <div class="max-w-5xl mx-auto grid gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 bg-white p-20">
 
-        <div class="text-center flex flex-col gap-4">
-            <img src="assets/images/career1.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
-            <h1 class="text-xl font-bold">Coding</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <button class="txt-primary font-bold">
-                Learn more
-                <span>></span>
-            </button>
-        </div>
+    <div class="text-center flex flex-col gap-4">
+      <img src="assets/images/career2.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
+      <h1 class="text-xl font-bold">Coding</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <button class="txt-primary font-bold">
+        Learn more
+        <span>></span>
+      </button>
+    </div>
 
-        <div class="text-center flex flex-col gap-4">
-            <img src="assets/images/career2.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
-            <h1 class="text-xl font-bold">Coding</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <button class="txt-primary font-bold">
-                Learn more
-                <span>></span>
-            </button>
-        </div>
+    <div class="text-center flex flex-col gap-4">
+      <img src="assets/images/career3.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
+      <h1 class="text-xl font-bold">Coding</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <button class="txt-primary font-bold">
+        Learn more
+        <span>></span>
+      </button>
+    </div>
 
-        <div class="text-center flex flex-col gap-4">
-            <img src="assets/images/career3.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
-            <h1 class="text-xl font-bold">Coding</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <button class="txt-primary font-bold">
-                Learn more
-                <span>></span>
-            </button>
-        </div>
+    <div class="text-center flex flex-col gap-4">
+      <img src="assets/images/career4.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
+      <h1 class="text-xl font-bold">Coding</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <button class="txt-primary font-bold">
+        Learn more
+        <span>></span>
+      </button>
+    </div>
 
-        <div class="text-center flex flex-col gap-4">
-            <img src="assets/images/career4.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
-            <h1 class="text-xl font-bold">Coding</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <button class="txt-primary font-bold">
-                Learn more
-                <span>></span>
-            </button>
-        </div>
+    <div class="text-center flex flex-col gap-4">
+      <img src="assets/images/career6.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
+      <h1 class="text-xl font-bold">Coding</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <button class="txt-primary font-bold">
+        Learn more
+        <span>></span>
+      </button>
+    </div>
 
-        <div class="text-center flex flex-col gap-4">
-            <img src="assets/images/career6.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
-            <h1 class="text-xl font-bold">Coding</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <button class="txt-primary font-bold">
-                Learn more
-                <span>></span>
-            </button>
-        </div>
+    <div class="text-center flex flex-col gap-4">
+      <img src="assets/images/career6.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
+      <h1 class="text-xl font-bold">Coding</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+      <button class="txt-primary font-bold">
+        Learn more
+        <span>></span>
+      </button>
+    </div>
+  </div>
+  <!--Section Part-2 Start-->
+  <section class="p-2 mt-4">
+    <div class="max-w-2xl mx-auto hover:border-2 border-primary grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
+      <div class="flex flex-col gap-2 items-center">
+        <h1 class="txt-primary text-3xl">254</h1>
+        <p class="text-gray-400">Successful Project</p>
+      </div>
+      <div class="flex flex-col gap-2 items-center">
+        <h1 class="txt-primary text-3xl">383</h1>
+        <p class="text-gray-400">People Impacted</p>
+      </div>
+      <div class="flex flex-col gap-2 items-center">
+        <h1 class="txt-primary text-3xl">8M</h1>
+        <p class="text-gray-400">Money Donated</p>
+      </div>
 
-        <div class="text-center flex flex-col gap-4">
-            <img src="assets/images/career6.png" alt="career1" class="mx-auto w-[80px] h-[80px]">
-            <h1 class="text-xl font-bold">Coding</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <button class="txt-primary font-bold">
-                Learn more
-                <span>></span>
-            </button>
-        </div>
-
+      <div class="flex flex-col gap-2 items-center">
+        <h1 class="txt-primary text-3xl">60+</h1>
+        <p class="text-gray-400">Volenteer Involved</p>
+      </div>
 
     </div>
+  </section>
+  <!--Section Part-2 End-->
+</section>
+<!--Service Section End-->
+
+<!--State Section Start-->
+<section class="p-20">
+  <div class="max-w-5xl mx-auto text-center">
+    <h1 class="text-3xl pb-6">Those state, we provides donation.</h1>
+    <p class="pb-10">We are organizing a program on January 20, 2019 to help the homeless people.<br> Our aim is to
+      provide them a specific place to live.</p>
+    <img src="assets/images/states.png" alt="state" class="mx-auto hover:border-2 border-primary">
+  </div>
+</section>
+<!--State Section End-->
+
+<!--Video call Section Start-->
+<section class="p-10 ">
+  <div class="max-w-5xl mx-auto text-center hover:border-2 border-primary ">
+    <h1 class="text-3xl pb-6">Introducing video calling support</h1>
+    <p class="pb-6">Every email, web page, and social media post makes an impression on your customers.
+      With our software you can be confident it's impression.</p>
+    <button class="txt-primary font-bold capitalize">
+      explore details
+      <span>></span>
+    </button>
+    <div class="relative">
+      <img src="assets/images/meeting.png" alt="meeting" class="mx-auto">
+      <div
+        class="md:absolute top-40 text-white font-bold text-left bg-[#FABF62] w-[220px] p-6 rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px]">
+        <p>Hi, I’m Andry. Let me know what can I do for you</p>
+      </div>
+      <div class="w-full flex justify-end">
+        <div class="md:absolute bottom-40 right-0 font-bold text-[#FABF62] text-left w-[220px] bg-white p-6 rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px] shadow-lg">
+          <p>your personal support assistance</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!--Video call Section End-->
+
+<!--contact us section Start-->
+<section class="p-10">
+  <div class="max-w-5xl mx-auto relative">
+       <img src="assets/images/team.png" alt="team" class="mx-auto">
+       <div class="w-full p-6 bg-[#183656] flex flex-col md:flex-row gap-4 justify-between items-center rounded-md hover:border-1 border-primary">
+        <p class="w-[400px] text-xl font-bold text-white text-center md:text-left">Do you have any question? Feel free to contact us</p>
+        <img src="assets/images/shape.png" alt="shape" class="absolute  left-1/2 w-[200px] hidden md:block">
+        <button class="px-6 py-2 bg-white font-bold text-sm txt-Secondary z-10 rounded-md">CONTACT US NOW</button>
+       </div>
+       
+  </div>
 
 </section>
-
-<!--Service Section End-->
+<!--contact us section End-->
