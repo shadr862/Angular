@@ -1,0 +1,11 @@
+1.npm run build
+2.dist->browser->create file->netlify.toml
+3.netlify.toml->
+
+[[redirects]]
+
+from="/*"
+
+to="/index.html"
+
+status=200
