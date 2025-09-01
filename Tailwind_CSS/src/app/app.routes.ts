@@ -14,6 +14,7 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 import { Project3Component } from './project3/project3.component';
 import { Project4Component } from './project4/project4.component';
 import { Project5Component } from './project5/project5.component';
+import { ImportantComponent } from './important/important.component';
 
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
     {path:'grid',component:GridComponent},
     {path:'responsive',component:ResponsiveComponent},
     {path:'animation_transition',component:AnimationAndTransitionComponent},
+    {path:'important',component:ImportantComponent},
     {path:'project1',component:Project1Component},
     {path:'project2',component:ProjectFormComponent},
     {path:'project3',component:Project3Component},

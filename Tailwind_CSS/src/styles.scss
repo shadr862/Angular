@@ -1,5 +1,34 @@
 @use "tailwindcss";
 
+body{
+    background-color: whitesmoke;
+}
+/*https://tailwindcss.com/docs/theme*/
+@theme{
+    --color-primary:#0092E4;
+    --color-secondary:#183656;
+} 
+@layer base{
+    h1{
+        @apply text-xl font-bold;
+    } 
+    p{
+        @apply font-semibold text-sm
+    }
+}
+
+@layer components{
+    .card{
+        @apply text-center flex flex-col gap-4;
+    }
+    .btn{
+        @apply bg-secondary px-6 py-2 rounded-md text-white font-bold;
+    }
+}
+
+@utility flex-center{
+   @apply flex justify-center items-center;
+}
 
 .txt-primary{
     color: #0092E4;
